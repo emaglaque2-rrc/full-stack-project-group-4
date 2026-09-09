@@ -14,4 +14,4 @@ Seth Boyer, Zalak Punjani, Edraque Maglaque
 
 - Second high-level user story
 
-- Third high-level user story
+- Third high-level user story.
