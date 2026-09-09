@@ -8,7 +8,7 @@ Seth Boyer, Zalak Punjani, Edraque Maglaque
 
 [WIP]
 
-### Project Genereral Description:
+### Project General Description:
 
 - First high-level user story
 
