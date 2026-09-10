@@ -29,5 +29,5 @@ The project will have 3 main components:
     - As a user, I want to be able to view my rental history and update my user information so that 
         I can keep track of my rentals and ensure my information is accurate.
 
-- Third high-level user story
+- Third high-level user story test
 
