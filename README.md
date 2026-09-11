@@ -6,7 +6,7 @@ Seth Boyer, Zalak Punjani, Edraque Maglaque
 
 ## Team Name
 
-[WIP]
+Red River Rentals
 
 ### Project Theme
 
