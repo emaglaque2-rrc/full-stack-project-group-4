@@ -20,16 +20,19 @@ The admin can add, update, and delete the equipment from the inventory. The admi
 
 The project will have ***3*** main components:
 
-    1. Equipment Inventory: will have equipment details and availability.
+    1. Equipment Inventory: 
+                         - Will have equipment details and availability.
 
-    2. User/Equipment Rental Inventory: will show user information and the rental history.
+    2. User/Equipment Rental Inventory:
+                         - Will show user information and the rental history.
    
-    3. Review System - will show all the reviews for the equipment. 
+    3. Review System: 
+                         - Will show all the reviews for the equipment. 
 
 ### Project User Stories:
 
 - First high-level user story
-  - > As a user,
+  - > As a user, I want to browse, search, and filter the available equipment and view detailed information such as its name, category, description, condition, quantity, and availability. So that I can easily find equipment that meets my needs and make an informed decision about what equipment I would like to rent.
 
 - Second high-level user story
   - > As a user, I want to be able to view my rental history and update my user information so that I can keep track of my rentals and ensure my information is accurate.
