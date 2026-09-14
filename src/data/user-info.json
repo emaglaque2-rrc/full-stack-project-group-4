@@ -1,0 +1,35 @@
+[
+    {
+        "equipment" : " ",
+        "users" : {
+            {
+                "firstName" : "Zalak",
+                "lastName" : "Aakash",
+                "email" : "punjanizalak@gmail.com",
+                "dateRented" : "14-03-2026",
+                "dateReturned" : "18-03-2026"
+            },
+
+            {
+                "firstName" : "Seth",
+                "lastName" : "Boyer",
+                "email" : "boyerseth@gmail.com",
+                "dateRented" : "10-04-2026",
+                "dateReturned" : "12-04-2026"
+            },
+
+            {
+                "firstName" : "Edraque",
+                "lastName" : "Maglaque",
+                "email" : "maglaqueed@gmail.com",
+                "dateRented" : "15-05-2026",
+                "dateReturned" : "20-05-2026"
+            }
+        }
+    },
+
+    {
+        "equipment" : "",
+        "user" : 
+    }
+]
