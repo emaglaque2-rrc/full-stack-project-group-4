@@ -35,10 +35,10 @@ The project will have 3 main components:
 
 ### Kanban Contributions
 
-- Set up project repository:
+- Set up project repository: Edraque
 - Project initialization: Edraque
 - Team Vercel Management: Edraque
-- Project Readme: Seth
+- Project Readme: Seth, Edraque, Zalak
 - High-level component 1-3: Edraque, Zalak, Seth
 - App stylesheet and style guide: Zalak
 - Styling 1-3: Edraque, Zalak, Seth
