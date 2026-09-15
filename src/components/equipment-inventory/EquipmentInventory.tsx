@@ -1,4 +1,5 @@
 import type { Equipment } from '../../types/equipment';
+import equipmentData from '../../data/equipment.json';
 
 function EquipmentInventory() {
     return(
