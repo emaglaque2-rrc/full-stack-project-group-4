@@ -17,3 +17,11 @@ interface User {
 }
 
 export const userData: User[] = users;
+
+function UserInventory() {
+    return (
+        <main>
+            <h2> User Information</h2>
+        </main>
+    )
+}
