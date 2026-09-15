@@ -29,5 +29,18 @@ The project will have 3 main components:
     - As a user, I want to be able to view my rental history and update my user information so that 
         I can keep track of my rentals and ensure my information is accurate.
 
-- Third high-level user story test
+- Third high-level user story 
+    - As a user, I want to be able to check reviews on the equipment I plan to rent so that I can check public
+        opinion on the equipment and ensure there are no defects.
+
+### Kanban Contributions
+
+- Set up project repository: Edraque
+- Project initialization: Edraque
+- Team Vercel Management: Edraque
+- Project Readme: Seth, Edraque, Zalak
+- High-level component 1-3: Edraque, Zalak, Seth
+- App stylesheet and style guide: Zalak
+- Styling 1-3: Edraque, Zalak, Seth
+- app integration: Zalak
 
