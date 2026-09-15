@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "name": "Digicamera",
+        "category": "Electronics",
+        "description": "Trendy high-resolution digital camera for capturing mint photos!!",
+        "quantity": 3,
+        "availableQuantity": 2,
+        "condition": "Good",
+        "location": "EDC - P401",
+        "picture": "camera.jpg"
+    }
+]
