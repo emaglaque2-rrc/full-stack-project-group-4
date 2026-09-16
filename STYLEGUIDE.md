@@ -1,17 +1,10 @@
-# Colours
+# Style Guide for the project
 
-Primary Colour: Colour name #XXXXXX
-Secondary Color: Colour name #XXXXXX
-Tertiary Colour: Colour name #XXXXXX
-Accent/quaternary Colour: Colour name #XXXXXX
+Primary Color: Jet Black | #0c0c0c | body text and footer
+Secondary Color: Red | #FF0000 | Logo, Main heading
+Tertiary Color: Off-White | #f4f4f4 | page background color
 
-# Fonts
-
-*Just some examples, can always replace
-font-family: "monaspace", Monaspace;
+## Fonts
 
 font-family: "Segoe UI", sans-serif;
 
-font-family: "Metropolis";
-
-font-family: "Gotham Medium";
