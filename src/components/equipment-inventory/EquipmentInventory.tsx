@@ -13,12 +13,15 @@ function EquipmentInventory() {
             { /* Note: Remember the DepartmentSection component from Lab 1.2? We don't have a component similar to it here
             because our Equipment data is currently only one level, no nested entity like Equipment Categories > Equipment Items yet. 
             but we can create a separate component (EquipmentItem) for each equipment item to be rendered. */ }
-            {equipmentList.map((equipment) => (
-                <EquipmentItem 
-                    key={equipment.id}
-                    equipment={equipment}
-                />
-            ))}
+            <div className="equipment-inventory__grid"> 
+                {equipmentList.map((equipment) => (
+                    <EquipmentItem 
+                        key={equipment.id}
+                        equipment={equipment}
+                    />
+                ))}
+            </div>
+                
         </section>
     );
 }
