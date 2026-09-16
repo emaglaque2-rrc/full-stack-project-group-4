@@ -6,8 +6,9 @@
 // we won't know the total number of equipment items, how many items are currently available for use, 
 // and we won't know how many items are currently in use.
 //
-// Picture property stores the filename of the equipment image that'll be located in src/assets/images/equipment-images folder. 
-// The image displayed implementation is still WIP, but the filename will be used to display the image in the future.
+// Picture property stores the filename of the equipment image located in
+// public/images/equipment-images/ folder. EquipmentItem component uses this filename
+// to render the image path when displaying each equipment item.
 export interface Equipment {
     id: number;
     name: string;
