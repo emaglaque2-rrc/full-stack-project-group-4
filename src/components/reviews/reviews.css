@@ -1,0 +1,14 @@
+.review-display h2 {
+color: #bb5757;
+}
+
+.review-display article {
+    border-left: 4px solid #bb5757;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.review-display h3 {
+    color: #bb5757;
+}
