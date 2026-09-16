@@ -1,13 +1,12 @@
-import type { Review } from "../../types/review";
 import reviews from "../../data/reviews.json"
 
-function renderReviews() {
+function RenderReviews() {
     return (
         <section className="review-display">
             <h2>Product Reviews</h2>
 
             {reviews.map((review) => (
-                <article className="review">
+                <article key={review.id}>
                     <h3>{review.title} | {review.rating}/10</h3>
                     <p>Author: {review.author}</p>
                     <p>Product: {review.product}</p>
@@ -21,4 +20,4 @@ function renderReviews() {
     )
 }
 
-export default renderReviews
+export default RenderReviews
