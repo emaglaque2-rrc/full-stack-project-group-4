@@ -6,12 +6,14 @@
     margin-bottom: 1.5rem;
 }
 
+/* Individual equipment item styling */
 .equipment-inventory .equipment-item {
     min-width: 0;
     margin-bottom: 1.5rem;
     padding: 1rem;
 }
 
+/* Equipment image, maintains a consistent aspect ratio while keeping the full image visible. */
 .equipment-inventory .equipment-item img {
     display: block;
     width: 100%;
@@ -19,21 +21,34 @@
     object-fit: contain;
 }
 
+/* Equipment item heading */
 .equipment-inventory .equipment-item h3 {
     margin-bottom: 0.5rem;
 }
 
+/* Equipment item description */
 .equipment-inventory .equipment-item p {
     margin: 0.25rem 0;
 }
 
+/* Responsive equipment grid layout, automatically adjusts the
+number of columns based on available space/width. Each column will be at least 250px wide, 
+but will shrink to fit smaller screens. */
 .equipment-inventory__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 1.5rem;
 }
 
+/* Prevent long tect from overflowing outside equipment items. */
 .equipment-inventory .equipment-item p,
 .equipment-inventory .equipment-item h3 {
     overflow-wrap: break-word;
+}
+
+/* Reduce inventory padding on smaller screens for better usability and to maximize space. */
+@media (max-width: 600px) {
+    .equipment-inventory {
+        padding: 1rem;
+    }
 }
