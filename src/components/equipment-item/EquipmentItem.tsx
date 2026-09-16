@@ -14,12 +14,18 @@ function EquipmentItem({ equipment }: EquipmentItemProps) {
                 alt={`Image of ${equipment.name}`}
             />
             <h3>{equipment.name}</h3>
-            <p>{equipment.description}</p>
-            <p>Quantity: {equipment.quantity}</p>
-            <p>Available: {equipment.availableQuantity}</p>
-            <p>Condition: {equipment.condition}</p>
-            <p>Location: {equipment.location}</p>
-            <p>Category: {equipment.category}</p>
+
+            <p className="equipment-item__description">
+                {equipment.description}
+            </p>
+            
+            <div className="equipment-item__details">
+                <p><strong>Quantity:</strong> {equipment.quantity}</p>
+                <p><strong>Available:</strong> {equipment.availableQuantity}</p>
+                <p><strong>Condition:</strong> {equipment.condition}</p>
+                <p><strong>Location:</strong> {equipment.location}</p>
+                <p><strong>Category:</strong> {equipment.category}</p>
+            </div>
         </article>
     );
 }
