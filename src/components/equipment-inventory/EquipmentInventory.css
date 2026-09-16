@@ -10,16 +10,18 @@
 .equipment-inventory .equipment-item {
     min-width: 0;
     padding: 1rem;
-    border: 1px solid;
+    
+    background-color: #f4f4f4;
+    border: 1px solid #bb5757;
     border-radius: 0.5rem;
 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(12, 12, 12, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .equipment-inventory .equipment-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(12, 12, 12, 0.2);
 }
 
 /* Equipment image, maintains a consistent aspect ratio while keeping the full image visible. */
@@ -33,7 +35,7 @@
 
 /* Equipment item heading */
 .equipment-inventory .equipment-item h3 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
 }
 
 /* Equipment item description */
@@ -47,6 +49,7 @@ but will shrink to fit smaller screens. */
 .equipment-inventory__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1.5rem;
 }
 
 /* Prevent long tect from overflowing outside equipment items. */
