@@ -1,6 +1,4 @@
 import users from '../../data/user-info.json';
-import "./user-inventory.css";
-
 
 interface Rental {
     equipmentId:number;
