@@ -7,6 +7,10 @@ interface EquipmentItemProps {
 function EquipmentItem({ equipment }: EquipmentItemProps) {
     return (
         <article className="equipment-item">
+            <img
+                src={`/images/equipment-images/${equipment.picture}`}
+                alt={equipment.name}
+            />
             <h3>{equipment.name}</h3>
             <p>{equipment.description}</p>
             <p>Quantity: {equipment.quantity}</p>
