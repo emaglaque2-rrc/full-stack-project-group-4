@@ -31,6 +31,9 @@
     aspect-ratio: 4 / 3;
     object-fit: contain;
     margin-bottom: 1rem;
+
+    background-color: #f3e3e3;
+    border-radius: 0.8rem;
 }
 
 /* Equipment item heading */
