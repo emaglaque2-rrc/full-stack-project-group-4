@@ -1,6 +1,7 @@
 import type { Equipment } from '../../types/equipment';
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import equipmentData from '../../data/equipment.json';
+import './EquipmentInventory.css';
 
 function EquipmentInventory() {
     const equipmentList: Equipment[] = equipmentData;
