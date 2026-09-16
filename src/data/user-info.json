@@ -1,0 +1,74 @@
+[
+    {
+        "userId" : "123456",
+        "firstName" : "Zalak",
+        "lastName" : "Punjani",
+        "userEmail" : "punjzap@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2026-03-13",
+                "dateReturned" : "2026-03-16",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-09-13",
+                "dateReturned" : "2026-09-20",
+                "status" : "In use"
+            }
+        ]
+    },
+
+    {
+       "userId" : 123457,
+        "firstName" : "Edraque",
+        "lastName" : "Maglaque",
+        "userEmail" : "magEd@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 2,
+                "dateRented" : "2025-11-10",
+                "dateReturned" : "2025-11-15",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2026-09-10",
+                "dateReturned" : "2026-09-12",
+                "status" : "Returned"
+            }
+        ] 
+    },
+
+    {
+        "userId" : 123458,
+        "firstName" : "Seth",
+        "lastName" : "Boyer",
+        "userEmail" : "boySee@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2025-9-10",
+                "dateReturned" : "2025-9-15",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 2,
+                "dateRented" : "2026-06-10",
+                "dateReturned" : "2026-06-12",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-09-14",
+                "dateReturned" : "2026-09-29",
+                "status" : "In use"
+            }
+        ] 
+    }
+]

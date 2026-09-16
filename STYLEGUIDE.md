@@ -1,17 +1,22 @@
-# Colours
+# Style Guide for the project
 
-Primary Colour: Colour name #XXXXXX
-Secondary Color: Colour name #XXXXXX
-Tertiary Colour: Colour name #XXXXXX
-Accent/quaternary Colour: Colour name #XXXXXX
+Primary Color: Jet Black | #0c0c0c | body text and footer
+Secondary Color: Dusty Red | #bb5757 | Logo, headingS
+Tertiary Color: Off-White | #f4f4f4 | page background color
 
-# Fonts
-
-*Just some examples, can always replace
-font-family: "monaspace", Monaspace;
+## Fonts
 
 font-family: "Segoe UI", sans-serif;
+Header: 2.5 rem, main application header
+h2: 2 rem, subheadings
+h3: 1.5, subsection headings
+body: 1 rem,  general application text
+Footer: 0.75, footer fo the page.
 
-font-family: "Metropolis";
+## Spacing
 
-font-family: "Gotham Medium";
+Gaps between related elements: 0.25 rem
+Standard element spacing: 1 rem
+Section spacing: 1.5 rem
+
+
