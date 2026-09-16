@@ -20,11 +20,12 @@
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: contain;
+    margin-bottom: 1rem;
 }
 
 /* Equipment item heading */
 .equipment-inventory .equipment-item h3 {
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.75rem;
 }
 
 /* Equipment item description */
