@@ -1,0 +1,30 @@
+.review-display {
+    display: flexbox;
+    
+}
+
+.review-display h2 {
+color: #0c0c0c;
+background-color: #bb5757;
+border: 2px solid #0c0c0c;
+border-radius: 5px;
+padding-bottom: 0.5rem;
+margin-left: 2rem;
+margin-right: 2rem;
+}
+
+.review-display article {
+    border: 3px solid #bb5757;
+    padding: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.review-display h3 {
+    color: #bb5757;
+}
+
+
+

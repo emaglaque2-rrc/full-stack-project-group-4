@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1,
+        "title": "Digicamera - awesome value!",
+        "author": "Billy joel",
+        "product": "Digicamera",
+        "body": "The camera worked great!",
+        "rating": 9,
+        "datePosted": "2026-05-27"
+    },
+    {
+        "id": 2,
+        "title": "Microphone made me sound sooo good",
+        "author": "Marisa L",
+        "product": "Microphone",
+        "body": "I plugged this jawn in at the function and sounded exactly like mariah carey! UPDATE: nvm i sounded like angelina jolie!",
+        "rating": 10,
+        "datePosted": "2026-02-14",
+        "dateUpdated": "2026-06-23"     
+    },
+    {
+        "id": 3,
+        "title": "lighting kit was underwhelming",
+        "author": "Mr. Man",
+        "product": "Lighting kit",
+        "body": "Overall a bit less bright than I was expecting, but in all honesty I didn't check the spec sheet.",
+        "rating": 7,
+        "datePosted": "2026-05-03"
+    },    
+    {
+        "id": 4,
+        "title": "Green Screen SUCKED!",
+        "author": "Robin Dabank",
+        "product": "Green Screen",
+        "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
+        "rating": 1,
+        "datePosted": "2026-12-03"
+    }
+
+]
