@@ -8,34 +8,6 @@
 .user-inventory h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #bb5757;
+  color: #ff0000;
 }
-
-.user-inventory table {
-    width: 100%;
-    background-color: #f4f4f4;
-}
-
-.user-inventory th,
-.user-inventory td {
-    padding: 1rem;
-    text-align: left;
-}
-
-.user-inventory th {
-    background-color: #bb5757;
-    color: #f4f4f4;
-    font-size: 1rem;
-}
-
-.user-inventory td {
-    color: #0c0c0c;
-    font-size: 1rem;
-}
-
-
-
-
-
-
 
