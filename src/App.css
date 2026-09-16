@@ -17,6 +17,12 @@ header {
 
 }
 
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #bb5757;
+}
+
 
 footer {
   background-color: #0C0C0C;
