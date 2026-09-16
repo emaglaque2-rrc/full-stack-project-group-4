@@ -1,5 +1,5 @@
 import reviews from "../../data/reviews.json"
-
+import "./reviews.css"
 function RenderReviews() {
     return (
         <section className="review-display">
