@@ -63,9 +63,12 @@ but will shrink to fit smaller screens. */
     margin-bottom: 1rem;
 }
 
-/* Equipment details section spacing */
+/* Equipment details section spacing and background */
 .equipment-inventory .equipment-item__details {
     margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f3e3e3;
+    border-radius: 0.5rem;
 }
 
 .equipment-inventory .equipment-item__details p {
