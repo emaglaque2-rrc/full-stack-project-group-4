@@ -25,3 +25,5 @@ function UserInventory() {
         </main>
     )
 }
+
+export default UserInventory
