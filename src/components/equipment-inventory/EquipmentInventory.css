@@ -1,0 +1,86 @@
+.equipment-inventory {
+    padding: 2rem;
+}
+
+.equipment-inventory h2 {
+    margin-bottom: 1.5rem;
+}
+
+/* Individual equipment item styling */
+.equipment-inventory .equipment-item {
+    min-width: 0;
+    padding: 1rem;
+    
+    background-color: #f4f4f4;
+    border: 1px solid #bb5757;
+    border-radius: 0.5rem;
+
+    box-shadow: 0 2px 6px rgba(12, 12, 12, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.equipment-inventory .equipment-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(12, 12, 12, 0.2);
+}
+
+/* Equipment image, maintains a consistent aspect ratio while keeping the full image visible. */
+.equipment-inventory .equipment-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    margin-bottom: 1rem;
+
+    background-color: #f3e3e3;
+    border-radius: 0.8rem;
+}
+
+/* Equipment item heading */
+.equipment-inventory .equipment-item h3 {
+    margin: 0 0 1rem;
+}
+
+/* Equipment item description */
+.equipment-inventory .equipment-item p {
+    margin: 0.25rem 0;
+}
+
+/* Responsive equipment grid layout, automatically adjusts the
+number of columns based on available space/width. Each column will be at least 250px wide, 
+but will shrink to fit smaller screens. */
+.equipment-inventory__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1.5rem;
+}
+
+/* Prevent long tect from overflowing outside equipment items. */
+.equipment-inventory .equipment-item p,
+.equipment-inventory .equipment-item h3 {
+    overflow-wrap: break-word;
+}
+
+/* Equipment description and details spacing */
+.equipment-inventory .equipment-item__description {
+    margin-bottom: 1rem;
+}
+
+/* Equipment details section spacing and background */
+.equipment-inventory .equipment-item__details {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f3e3e3;
+    border-radius: 0.5rem;
+}
+
+.equipment-inventory .equipment-item__details p {
+    margin: 0.25rem 0;
+}
+
+/* Reduce inventory padding on smaller screens for better usability and to maximize space. */
+@media (max-width: 600px) {
+    .equipment-inventory {
+        padding: 1rem;
+    }
+}
