@@ -1,4 +1,6 @@
 import users from '../../data/user-info.json';
+import "./user-inventory.css";
+
 
 interface Rental {
     equipmentId:number;
@@ -20,8 +22,8 @@ export const userData: User[] = users;
 
 function UserInventory() {
     return (
-        <main>
+        <section className="user-inventory">
             <h2> User Information</h2>
-        </main>
+        </section>
     )
 }
