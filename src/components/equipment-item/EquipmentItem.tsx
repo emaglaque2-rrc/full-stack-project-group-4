@@ -17,3 +17,5 @@ function EquipmentItem({ equipment }: EquipmentItemProps) {
         </article>
     )
 }
+
+export default EquipmentItem;
