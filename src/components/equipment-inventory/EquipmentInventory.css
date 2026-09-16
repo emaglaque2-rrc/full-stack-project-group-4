@@ -25,3 +25,10 @@
 .equipment-inventory .equipment-item p {
     margin: 0.25rem 0;
 }
+
+.equipment-inventory__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
