@@ -47,10 +47,12 @@ but will shrink to fit smaller screens. */
     overflow-wrap: break-word;
 }
 
+/* Equipment description and details spacing */
 .equipment-inventory .equipment-item__description {
     margin-bottom: 1rem;
 }
 
+/* Equipment details section spacing */
 .equipment-inventory .equipment-item__details {
     margin-top: 1rem;
 }
