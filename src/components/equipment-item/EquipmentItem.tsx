@@ -7,6 +7,8 @@ interface EquipmentItemProps {
 function EquipmentItem({ equipment }: EquipmentItemProps) {
     return (
         <article className="equipment-item">
+            { /* Note: The images are in the public directory because they are static assets,
+            and so I don't need to import them in the component. */ }
             <img
                 src={`/images/equipment-images/${equipment.picture}`}
                 alt={`Image of ${equipment.name}`}
@@ -19,7 +21,7 @@ function EquipmentItem({ equipment }: EquipmentItemProps) {
             <p>Location: {equipment.location}</p>
             <p>Category: {equipment.category}</p>
         </article>
-    )
+    );
 }
 
 export default EquipmentItem;
