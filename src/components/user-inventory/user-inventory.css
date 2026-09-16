@@ -1,0 +1,13 @@
+.user-inventory {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+
+}
+
+.user-inventory h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #ff0000;
+}
+
