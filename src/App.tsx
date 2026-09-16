@@ -1,15 +1,21 @@
 import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import UserInventory from './components/user-inventory/user-inventory'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import EquipmentInventory from './components/equipment-inventory/EquipmentInventory'
 
 function App() {
 
   return (
     <>
-        <Header />
-        <UserInventory />
-        <Footer />
+
+      <Header />
+
+      <main>
+        <EquipmentInventory />
+      </main>
+      
+      <Footer />
+
     </>
   )
 }

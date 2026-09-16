@@ -6,28 +6,47 @@ Seth Boyer, Zalak Punjani, Edraque Maglaque
 
 ## Team Name
 
-[WIP]
+**Red River Rentals**
 
-### Project Theme
+## Project Theme
 
 This project would be called RRR, which stands for Red River Rentals. Users can view the Equipments and its details,
-and can rent the equipment for a certain period of time. The users can also view their rental history and can return the equipment after use.The admin can add, update, and delete the equipment from the inventory. The admin can also view the rental history of all the students.
-The users can rent more than one equipment. When the user returns the equipment, the can leave a review.
+and can rent the equipment for a certain period of time. The users can also view their rental history and can return the equipment after use. The users can rent more than one equipment. When the user returns an equipment, they can leave a review.
+The admin can add, update, and delete the equipment from the inventory. The admin can also view the rental history of all the students.
+
+## Project General Description:
 
 ### Project Features
 
-The project will have 3 main components:
-    - Equipment Inventory: will have equipment details and availability.
-    - User/Equipment Rental Inventory: will show user information and the rental history.
-    - Review System - will show all the reviews for the equipment. 
+The project will have ***3*** main components:
 
-### Project General Description:
+    1. Equipment Inventory: 
+                         - Will have equipment details and availability.
+
+    2. User/Equipment Rental Inventory:
+                         - Will show user information and the rental history.
+   
+    3. Review System: 
+                         - Will show all the reviews for the equipment. 
+
+### Project User Stories:
 
 - First high-level user story
+  - > As a user, I want to browse, search, and filter the available equipment and view detailed information such as its name, category, description, condition, quantity, and availability. So that I can easily find equipment that meets my needs and make an informed decision about what equipment I would like to rent.
 
 - Second high-level user story
-    - As a user, I want to be able to view my rental history and update my user information so that 
-        I can keep track of my rentals and ensure my information is accurate.
+  - > As a user, I want to be able to view my rental history and update my user information so that I can keep track of my rentals and ensure my information is accurate.
 
-- Third high-level user story test
+- Third high-level user story 
+  - > As a user, I want to be able to check reviews on the equipment I plan to rent so that I can check public opinion on the equipment and ensure there are no defects.
 
+### Kanban Contributions
+
+- Set up project repository: Edraque
+- Project initialization: Edraque
+- Team Vercel Management: Edraque
+- Project Readme: Seth, Edraque, Zalak
+- High-level component 1-3: Edraque, Zalak, Seth
+- App stylesheet and style guide: Zalak
+- Styling 1-3: Edraque, Zalak, Seth
+- app integration: Zalak
