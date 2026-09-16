@@ -9,8 +9,9 @@
 /* Individual equipment item styling */
 .equipment-inventory .equipment-item {
     min-width: 0;
-    margin-bottom: 1.5rem;
     padding: 1rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
 }
 
 /* Equipment image, maintains a consistent aspect ratio while keeping the full image visible. */
@@ -37,7 +38,6 @@ but will shrink to fit smaller screens. */
 .equipment-inventory__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-    gap: 1.5rem;
 }
 
 /* Prevent long tect from overflowing outside equipment items. */
