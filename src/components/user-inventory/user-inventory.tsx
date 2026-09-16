@@ -42,9 +42,9 @@ function UserInventory() {
                     {userData.map((user) =>
                         user.rentals.map((rental) =>
                             <tr key={`${user.userId}-${rental.equipmentId}`}>
+                                <td>{user.userId}</td>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>
-                                <td>{user.userId}</td>
                                 <td>{user.userEmail}</td>
                                 <td>{rental.equipmentId}</td>
                                 <td>{rental.dateRented}</td>
