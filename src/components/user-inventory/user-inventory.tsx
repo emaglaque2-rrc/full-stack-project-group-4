@@ -58,3 +58,5 @@ function UserInventory() {
         </section>
     )
 }
+
+export default UserInventory
