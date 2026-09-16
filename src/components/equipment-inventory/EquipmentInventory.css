@@ -47,6 +47,18 @@ but will shrink to fit smaller screens. */
     overflow-wrap: break-word;
 }
 
+.equipment-inventory .equipment-item__description {
+    margin-bottom: 1rem;
+}
+
+.equipment-inventory .equipment-item__details {
+    margin-top: 1rem;
+}
+
+.equipment-inventory .equipment-item__details p {
+    margin: 0.25rem 0;
+}
+
 /* Reduce inventory padding on smaller screens for better usability and to maximize space. */
 @media (max-width: 600px) {
     .equipment-inventory {
