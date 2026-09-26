@@ -6,6 +6,7 @@ import UserInventory from './components/user-inventory/user-inventory';
 import RenderReviews from './components/reviews/reviews';
 import { useState } from 'react';
 import equipmentData from "./data/equipment.json"
+
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
   return (
@@ -15,12 +16,12 @@ const [equipment, setEquipment] = useState(equipmentData)
 
           <Route 
                 index 
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
                 path="equipment"
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
@@ -30,7 +31,7 @@ const [equipment, setEquipment] = useState(equipmentData)
 
           <Route 
                 path="reviews"
-                element={<RenderReviews />}
+                element={<RenderReviews equipment={equipment} setEquipment={setEquipment} />}
           />
 
         </Route>

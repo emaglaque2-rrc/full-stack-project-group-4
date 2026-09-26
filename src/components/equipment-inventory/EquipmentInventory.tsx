@@ -2,8 +2,9 @@ import type { Equipment } from '../../types/equipment';
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import equipmentData from '../../data/equipment.json';
 import './EquipmentInventory.css';
+import type { equipmentProps } from '../../types/equipmentProps';
 
-function EquipmentInventory() {
+function EquipmentInventory({equipment, setEquipment}: equipmentProps) {
     const equipmentList: Equipment[] = equipmentData;
 
     return(
