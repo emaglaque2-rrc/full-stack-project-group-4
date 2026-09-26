@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/layout/Layout';
+import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import UserInventory from './components/user-inventory/user-inventory';
 import RenderReviews from './components/reviews/reviews';
