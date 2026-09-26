@@ -1,30 +1,39 @@
 import './App.css';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import UserInventory from './components/user-inventory/user-inventory';
 import RenderReviews from './components/reviews/reviews';
-import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
 
-      <Header />
+          <Route 
+                index 
+                element={<EquipmentInventory />} 
+          />
 
-      <main>
-        <Routes>
-          
-          <Route path="/" element={<EquipmentInventory />} />
-          <Route path="/user" element={<UserInventory />} />
-          <Route path="/reviews" element={<RenderReviews />} />
+          <Route 
+                path="equipment"
+                element={<EquipmentInventory />} 
+          />
 
-        </Routes>
-      </main>
-      
-      <Footer />
+          <Route 
+                path="user"
+                element={<UserInventory />} 
+          />
 
+          <Route 
+                path="reviews"
+                element={<RenderReviews />}
+          />
+
+        </Route>
+      </Routes>
     </>
   )
 }
