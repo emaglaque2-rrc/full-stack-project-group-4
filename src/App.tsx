@@ -31,7 +31,7 @@ const [equipment, setEquipment] = useState(equipmentData)
 
           <Route 
                 path="reviews"
-                element={<RenderReviews equipment={equipment} setEquipment={setEquipment} />}
+                element={<RenderReviews equipment={equipment} />}
           />
 
         </Route>
