@@ -4,9 +4,11 @@ import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import UserInventory from './components/user-inventory/user-inventory';
 import RenderReviews from './components/reviews/reviews';
+import { useState } from 'react';
+import equipmentData from "./data/equipment.json"
 
 function App() {
-
+const [equipment, setEquipment] = useState(equipmentData)
   return (
     <>
       <Routes>
@@ -14,12 +16,12 @@ function App() {
 
           <Route 
                 index 
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
                 path="equipment"
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
@@ -29,7 +31,7 @@ function App() {
 
           <Route 
                 path="reviews"
-                element={<RenderReviews />}
+                element={<RenderReviews equipment={equipment} />}
           />
 
         </Route>
