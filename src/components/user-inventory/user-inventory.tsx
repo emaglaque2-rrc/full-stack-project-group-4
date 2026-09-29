@@ -1,21 +1,6 @@
 import users from '../../data/user-info.json';
 import './user-inventory.css';
-
-interface Rental {
-    equipmentId:number;
-    dateRented: string;
-    dateReturned: string;
-    status: string;
-}
-
-
-interface User {
-    userId: number | string;
-    firstName: string;
-    lastName?: string;
-    userEmail: string;
-    rentals: Rental[];
-}
+import type { User, Rental} from "../../types/user"
 
 export const userData: User[] = users;
 
