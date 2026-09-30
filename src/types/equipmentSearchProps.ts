@@ -1,4 +1,4 @@
 export interface EquipmentSearchProps {
-    searchTerm: string;
-    setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+    searchValue: string;
+    handleSearchChange: (newValue: string) => void;
 }
