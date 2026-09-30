@@ -5,6 +5,13 @@ export function EquipmentSearch({
     handleSearchChange
 }: EquipmentSearchProps) {
     return(
-        
+        <form onSubmit={(event) => event.preventDefault()}>
+
+            <label htmlFor="equipment-search">
+                Search Equipment by name: 
+            </label>
+
+
+        </form>
     )
 }
