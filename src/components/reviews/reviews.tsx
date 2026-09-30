@@ -10,25 +10,26 @@ function RenderReviews({equipment}: equipmentProps) {
     const [author, setAuthor] = useState<string>("")
     const [product, setProduct] = useState<string>("")
     const [body, setBody] = useState<string>("")
+
         function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
             e.preventDefault()
 
-
             let currentDate = new Date()
             currentDate.toISOString().split('T')[0]
-
-            const review: Review = {
-                id: Date.now(),
-                title: title,
-                rating: rating,
-                author: author,
-                product: product,
-                body: body,
-                datePosted: currentDate
+            if (title && rating && author && product && body !== null) {
+                const review: Review = {
+                    id: Date.now(),
+                    title: title,
+                    rating: rating,
+                    author: author,
+                    product: product,
+                    body: body,
+                    datePosted: currentDate
+                }
+                console.log(review)
             }
-
-            
         }
+
     return (
         <>
         <section className="review-display">
@@ -60,7 +61,7 @@ function RenderReviews({equipment}: equipmentProps) {
             <select name="product" id="" onChange={(e) => setProduct(e.target.value)}>
                 <option value="">Select Equipment</option>
                 {equipment.map(equip => (
-                    <option key={equip.id} value={equip.id}>{equip.name}</option>
+                    <option key={equip.id} value={equip.name}>{equip.name}</option>
                 ))}
             </select>
 
