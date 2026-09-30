@@ -1,9 +1,9 @@
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import './EquipmentInventory.css';
 import type { equipmentProps } from '../../types/equipmentProps';
+import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
 
-function EquipmentInventory({equipment, setEquipment}: equipmentProps) {
-    // const equipmentList: Equipment[] = equipmentData;
+function EquipmentInventory({ equipment }: equipmentProps) {
 
     return(
         <section className="equipment-inventory">
