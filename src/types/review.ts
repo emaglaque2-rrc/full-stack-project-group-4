@@ -1,3 +1,5 @@
+import type { Equipment } from "./equipment";
+
 export interface Review {
     id: number;
     title: string;
