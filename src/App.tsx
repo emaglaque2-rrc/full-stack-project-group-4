@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
-import UserInventory from './components/user-inventory/user-inventory';
+import UserPage from './components/user-page/user-page'
 import RenderReviews from './components/reviews/reviews';
+import userData from './data/user-info.json'
+import type { User } from './types/user'
+
 
 function App() {
+
+  const [users, setUsers] = useState<User[]>(userData);
 
   return (
     <>
@@ -24,7 +30,7 @@ function App() {
 
           <Route 
                 path="user"
-                element={<UserInventory />} 
+                element={<UserPage users={users} setUsers={setUsers} />} 
           />
 
           <Route 
