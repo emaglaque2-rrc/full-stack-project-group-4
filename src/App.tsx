@@ -20,12 +20,12 @@ function App() {
 
           <Route 
                 index 
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
                 path="equipment"
-                element={<EquipmentInventory />} 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
           />
 
           <Route 
@@ -35,7 +35,7 @@ function App() {
 
           <Route 
                 path="reviews"
-                element={<RenderReviews />}
+                element={<RenderReviews equipment={equipment} />}
           />
 
         </Route>
