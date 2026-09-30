@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import './EquipmentInventory.css';
 import type { equipmentProps } from '../../types/equipmentProps';
 import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
 
 function EquipmentInventory({ equipment }: equipmentProps) {
+    const [searchValue, setSearchValue] = useState<string>('');
+
+    const filteredEquipment = searchValue.trim()
+        ? equipment.filter((item) => {
+            return item.name.toLowerCase().includes(
+                searchValue.toLowerCase().trim()
+            );
+        })
+        : equipment;
 
     return(
         <section className="equipment-inventory">
