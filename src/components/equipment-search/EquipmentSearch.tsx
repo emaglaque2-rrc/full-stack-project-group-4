@@ -22,6 +22,13 @@ export function EquipmentSearch({
                 }
             />
 
+            <button 
+                type="button"
+                onClick={() => handleSearchChange('')}
+            >
+                Clear
+            </button>
+
         </form>
     )
 }
