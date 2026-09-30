@@ -6,6 +6,13 @@ import type { UserProps } from '../../types/userProps'
 export const userData: User[] = users;
 
 function UserInventory({ users, setUsers }: UserProps) {
+
+    function handelRemoveUser(userId: number | string) {
+        setUsers(
+            users.filter((user) => user.userId !== userId)
+        )
+    }
+
     return (
         <section className="user-inventory">
             <h2> User Information</h2>
@@ -20,6 +27,7 @@ function UserInventory({ users, setUsers }: UserProps) {
                         <th>Date Rented</th>
                         <th>Date Returned</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -35,6 +43,10 @@ function UserInventory({ users, setUsers }: UserProps) {
                                 <td>{rental.dateRented}</td>
                                 <td>{rental.dateReturned}</td>
                                 <td>{rental.status}</td>
+
+                                <td>
+                                    <button type="button" onClick={() => handelRemoveUser(user.userId)}>Remove User</button>
+                                </td>
                             </tr>
                         ))}
                 </tbody>
