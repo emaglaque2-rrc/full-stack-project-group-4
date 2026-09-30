@@ -1,10 +1,11 @@
 import users from '../../data/user-info.json';
 import './user-inventory.css';
 import type { User, Rental} from "../../types/user"
+import type { UserProps } from '../../types/userProps'
 
 export const userData: User[] = users;
 
-function UserInventory() {
+function UserInventory({ users, setUsers }: UserProps) {
     return (
         <section className="user-inventory">
             <h2> User Information</h2>
@@ -23,7 +24,7 @@ function UserInventory() {
                 </thead>
 
                 <tbody>
-                    {userData.map((user) =>
+                    {users.map((user) =>
                         user.rentals.map((rental) =>
                             <tr key={`${user.userId}-${rental.equipmentId}`}>
                                 <td>{user.userId}</td>

@@ -6,7 +6,7 @@ function UserPage({ users, setUsers}: UserProps) {
     return(
         <section className="user-page">
             <UserForm users={users} setUsers={setUsers} />
-            <UserInventory />
+            <UserInventory users={users} setUsers={setUsers} />
         </section>
     );
 }

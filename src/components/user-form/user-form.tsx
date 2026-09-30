@@ -61,7 +61,7 @@ function UserForm ({users, setUsers}: UserProps) {
             rentals: [newRental]
         };
 
-        setUsers?.([...users,newUser]);
+        setUsers([...users,newUser]);
 
         setFirstName("");
         setLastName("");
