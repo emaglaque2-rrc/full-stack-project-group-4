@@ -34,7 +34,7 @@ function RenderReviews({equipment}: equipmentProps) {
 
         function addReview(review: Review){
             setReviewList((reviewList => {
-                return{...reviewList, review}
+                return[...reviewList, review]
             })
         )}
 
