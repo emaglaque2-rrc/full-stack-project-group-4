@@ -11,11 +11,13 @@ function RenderReviews({equipment}: equipmentProps) {
     const [product, setProduct] = useState<string>("")
     const [body, setBody] = useState<string>("")
 
+    const [reviewList, setReviewList] = useState(reviews)
+
         function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
             e.preventDefault()
 
-            let currentDate = new Date()
-            currentDate.toISOString().split('T')[0]
+            let currentDate = new Date().toISOString().split('T')[0]
+
             if (title && rating && author && product && body !== null) {
                 const review: Review = {
                     id: Date.now(),
@@ -26,16 +28,25 @@ function RenderReviews({equipment}: equipmentProps) {
                     body: body,
                     datePosted: currentDate
                 }
-                console.log(review)
+                addReview(review)
             }
         }
+
+        function addReview(review: Review){
+            setReviewList((reviewList => {
+                return{...reviewList, review}
+            })
+        )}
+
+        
 
     return (
         <>
         <section className="review-display">
             <h2>Product Reviews</h2>
-
-            {reviews.map((review) => (
+            
+            console.log(reviewList)
+            {reviewList.map((review) => (
                 <article key={review.id}>
                     <h3>{review.title} | {review.rating}/10</h3>
                     <p>Author: {review.author}</p>
