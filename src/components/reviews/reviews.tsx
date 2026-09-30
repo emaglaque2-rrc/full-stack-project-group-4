@@ -1,6 +1,8 @@
 import reviews from "../../data/reviews.json"
+import type { equipmentProps } from "../../types/equipmentProps"
 import "./reviews.css"
-function RenderReviews() {
+
+function RenderReviews({equipment}: equipmentProps) {
     return (
         <section className="review-display">
             <h2>Product Reviews</h2>
