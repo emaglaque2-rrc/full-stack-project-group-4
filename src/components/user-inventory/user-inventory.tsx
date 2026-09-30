@@ -1,6 +1,6 @@
 import users from '../../data/user-info.json';
 import './user-inventory.css';
-import type { User, Rental} from "../../types/user"
+import type { User } from "../../types/user"
 import type { UserProps } from '../../types/userProps'
 
 export const userData: User[] = users;
