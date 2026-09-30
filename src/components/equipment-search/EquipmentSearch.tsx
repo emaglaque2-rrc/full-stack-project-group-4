@@ -11,6 +11,16 @@ export function EquipmentSearch({
                 Search Equipment by name: 
             </label>
 
+            <input 
+                id="equipment-search"
+                type="text"
+                name="field-equipment" 
+                placeholder="Enter an equipment name..."
+                value={searchValue}
+                onChange={(event) => 
+                    handleSearchChange(event.target.value)
+                }
+            />
 
         </form>
     )
