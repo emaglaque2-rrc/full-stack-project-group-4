@@ -55,11 +55,15 @@ function EquipmentInventory({
             return; // Stop if the setter or ID generator is not provided.
         }
 
+        // Copy the form details and assign the next sequential ID.
+        // TypeScript infers the completed object's type as Equipment because it has all the required properties.
         const equipmentToAdd = {
             ...newEquipment,
             id: getNextEquipmentId() // Allocate a unique ID for the new equipment entry.
         };
 
+        // Update the shared catalogue state with the new entry by appending it to the current array of equipment.
+        // React supplies the current state as currentEquipment, which is an array of Equipment objects.
         setEquipment((currentEquipment) => {
             return [...currentEquipment, equipmentToAdd];
         })
