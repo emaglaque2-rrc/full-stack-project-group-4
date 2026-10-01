@@ -46,19 +46,20 @@ export default function EquipmentForm({
                 return;
             }
 
-            // Allow only letters and spaces in category and condition.
+            // Allow only letters and whitespace in category and condition, reject numbers and punctuation.
             // The earlier empty-field check already rejects whitespace-only values.
             // Already worked with regex in previous terms, but resource is here:
             // https://www.w3schools.com/jsref/jsref_regexp_test.asp
             // **IMPORTANT** I used AI to help me construct the regex, but I verified it and tested it myself.
             const lettersAndSpacesRegex = /^[A-Za-z\s]+$/;
 
-            if (!lettersAndSpacesRegex.test(category)) {
+            if (!lettersAndSpacesRegex.test(category.trim())) {
                 setErrorMessage('Category must contain only letters and spaces.');
                 return;
             }
 
-            if (!lettersAndSpacesRegex.test(condition)) {
+
+            if (!lettersAndSpacesRegex.test(condition.trim())) {
                 setErrorMessage('Condition must contain only letters and spaces.');
                 return;
             }
