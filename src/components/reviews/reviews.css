@@ -1,6 +1,8 @@
 .review-display {
-    display: flexbox;
-    
+    flex: 2;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .review-display h2 {
@@ -9,22 +11,78 @@ background-color: #bb5757;
 border: 2px solid #0c0c0c;
 border-radius: 5px;
 padding-bottom: 0.5rem;
-margin-left: 2rem;
-margin-right: 2rem;
 }
 
 .review-display article {
-    border: 3px solid #bb5757;
+    border: 2px solid #bb5757;
+    border-left: 4px solid #bb5757;
     padding: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
     margin-bottom: 1rem;
     border-radius: 4px;
 }
 
+.review-display article p {
+    margin: 0.5rem 0;
+}
+
 .review-display h3 {
     color: #bb5757;
+    margin-top: 0;
+    margin-bottom: 0.5rem 0;
 }
+
+.review-form {
+    max-width: 600px;
+    flex: 1;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 2px solid #bb5757;
+    border-radius: 3px;
+    position: sticky;
+    top: 1rem;
+    background-color: #fff8f8;
+}
+
+.review-form h2 {
+    
+    border-radius: 8px;
+
+}
+.review-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.review-items input,
+.review-items select {
+    padding: 0.5rem;
+    border: 2px solid #bb5757;
+    border-radius: 6px;
+}
+
+.review-items label{
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.review-items textarea {
+    min-height: 100px;
+    padding: 0.5rem;
+    resize: vertical;
+}
+
+#rating-slider {
+    width: 150px;
+}
+
+.review-container{
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+
 
 
 
