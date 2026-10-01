@@ -140,3 +140,30 @@
     color: #a12525;
 }
 
+/* The search form is a direct child of the equipment page. */
+.equipment-inventory > form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f3e3e3;
+    border: 1px solid #d4aaaa;
+    border-radius: 0.5rem;
+}
+
+.equipment-inventory > form label {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.equipment-inventory > form input {
+    flex: 1;
+}
+
+.equipment-inventory > p {
+    padding: 1.5rem;
+    border: 1px dashed #887474;
+    text-align: center;
+}
+
