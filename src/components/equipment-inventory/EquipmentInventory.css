@@ -113,3 +113,11 @@
     cursor: not-allowed;
 }
 
+/* A visible outline helps keyboard users find the active control. */
+.equipment-inventory input:focus-visible,
+.equipment-inventory textarea:focus-visible,
+.equipment-inventory button:focus-visible {
+    outline: 3px solid #175fa6;
+    outline-offset: 3px;
+}
+
