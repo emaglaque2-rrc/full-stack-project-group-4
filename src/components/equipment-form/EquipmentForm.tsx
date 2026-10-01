@@ -60,6 +60,24 @@ export default function EquipmentForm({
                 return;
             }
 
+            if (availableQuantityNumber > quantityNumber) {
+                setErrorMessage('Available quantity cannot exceed total quantity.');
+                return;
+            }
+
+            // Prepare the validated equipment details.
+            // The parent will generate the ID when adding the catalogue entry, so we don't include it here.
+            const newEquipment: NewEquipment = {
+                name: name.trim(),
+                category: category.trim(),
+                description: description.trim(),
+                quantity: quantityNumber,
+                availableQuantity: availableQuantityNumber,
+                condition: condition.trim(),
+                location: location.trim(),
+                picture: picture.trim(),
+            };
+
         }
 
         return (
