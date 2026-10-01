@@ -3,11 +3,13 @@ import EquipmentItem from '../equipment-item/EquipmentItem';
 import './EquipmentInventory.css';
 import type { equipmentProps } from '../../types/equipmentProps';
 import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
-import type { Equipment, NewEquipment } from '../../types/equipment';
+import type { NewEquipment } from '../../types/equipment';
 import EquipmentForm from '../equipment-form/EquipmentForm';
 
 function EquipmentInventory({ 
-    equipment, setEquipment 
+    equipment, 
+    setEquipment, 
+    getNextEquipmentId
     }: equipmentProps) {
     const [searchValue, setSearchValue] = useState<string>('');
 

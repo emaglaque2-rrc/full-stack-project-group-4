@@ -34,12 +34,20 @@ function getNextEquipmentId() {
 
           <Route 
                 index 
-                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
+                element={<EquipmentInventory 
+                  equipment={equipment} 
+                  setEquipment={setEquipment}
+                  getNextEquipmentId={getNextEquipmentId}
+                />} 
           />
 
           <Route 
                 path="equipment"
-                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
+                element={<EquipmentInventory 
+                  equipment={equipment} 
+                  setEquipment={setEquipment}
+                  getNextEquipmentId={getNextEquipmentId}
+                />} 
           />
 
           <Route 
