@@ -20,3 +20,8 @@ export interface Equipment {
     location: string;
     picture: string;
 }
+
+// Data required to create equipment.
+// The ID is generated when adding the entry to the catalogue, 
+// so it is not required when creating a new equipment entry.
+export type NewEquipment = Omit<Equipment, 'id'>;
