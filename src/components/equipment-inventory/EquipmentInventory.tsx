@@ -18,13 +18,25 @@ function EquipmentInventory({
         })
         : equipment;
 
-        function handleRemoveEquipment(equipmentId: number) {
+    // Remove a catalogue entry from the equipment inventory. This function
+    // is passed down to the EquipmentItem component as a prop, so that the
+    // EquipmentItem component can call this function when the user clicks
+    // the "Remove" button for a specific equipment item.
+    // It uses the unique id of the equipment item.
+    function handleRemoveEquipment(equipmentId: number) {
+            // The shared props interface (equipmentProps) makes setEquipment optional.
+            // Stop here if this component wasn't given a setter.
             if (!setEquipment) {
                 console.error('setEquipment function is not provided');
                 return;
             }
-
+            
+            // Calculate the updated catalogue from the previous state.
+            // React supplies that state as currentEquipment, which is an array of Equipment objects.
             setEquipment((currentEquipment) => {
+
+                // Create a new array containing every item except
+                // the one whose ID matches equipmentId.
                 return currentEquipment.filter((item) => {
                     return item.id !== equipmentId;
                 })
