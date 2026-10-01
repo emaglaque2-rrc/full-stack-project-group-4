@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import type { NewEquipment } from '../../types/equipment';
 
 interface EquipmentFormProps {
@@ -21,6 +21,10 @@ export default function EquipmentForm({
         const [condition, setCondition] = useState<string>('');
         const [location, setLocation] = useState<string>('');
         const [picture, setPicture] = useState<string>('');
+
+        // Store validation feedback to display in the form.
+        // This is a single string for simplicity, but could be an array of strings if we wanted to display multiple errors.
+        const [errorMessage, setErrorMessage] = useState<string>('');
 
         return (
             <section className="equipment-form">
