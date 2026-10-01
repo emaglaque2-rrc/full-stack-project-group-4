@@ -18,6 +18,19 @@ function EquipmentInventory({
         })
         : equipment;
 
+        function handleRemoveEquipment(equipmentId: number) {
+            if (!setEquipment) {
+                console.error('setEquipment function is not provided');
+                return;
+            }
+
+            setEquipment((currentEquipment) => {
+                return currentEquipment.filter((item) => {
+                    return item.id !== equipmentId;
+                })
+            })
+        }
+
     return(
         <section className="equipment-inventory">
             <h2>Equipment Inventory</h2>
