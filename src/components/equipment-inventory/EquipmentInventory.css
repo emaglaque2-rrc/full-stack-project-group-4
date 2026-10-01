@@ -46,3 +46,38 @@
     border-top: 5px solid #bb5757;
     background-color: #fffafa;
 }
+
+/* Two columns for the add form; one column on small screens. */
+.equipment-inventory .equipment-form form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.equipment-inventory label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.equipment-inventory input,
+.equipment-inventory textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem;
+    border: 1px solid #887474;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #0c0c0c;
+    font: inherit;
+}
+
+.equipment-inventory input::placeholder {
+    color: #655858;
+}
+
+.equipment-inventory textarea {
+    min-height: 6rem;
+    resize: vertical;
+}
+
