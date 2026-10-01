@@ -73,6 +73,11 @@ function EquipmentInventory({
         <section className="equipment-inventory">
             <h2>Equipment Inventory</h2>
 
+            {/*Show the form when this page can allocate IDs and update the catalogue. */}
+            {setEquipment && getNextEquipmentId && (
+                <EquipmentForm onAddEquipment={handleAddEquipment} />
+            )}
+
             <EquipmentSearch
                 searchValue={searchValue}
                 handleSearchChange={setSearchValue}

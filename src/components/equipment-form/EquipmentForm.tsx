@@ -46,6 +46,12 @@ export default function EquipmentForm({
                 return;
             }
 
+            // Allow only letters and spaces in category and condition.
+            // The earlier empty-field check already rejects whitespace-only values.
+            const lettersAndSpacesRegex = /^[A-Za-z\s]+$/;
+
+            
+
             // Convert the input strings into numbres for the equipment object.
             const quantityNumber = Number(quantity);
             const availableQuantityNumber = Number(availableQuantity);
