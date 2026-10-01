@@ -1,14 +1,11 @@
 // The form that will allow user details to be entered and also add or remove a user
 
 import { useState } from "react";
-import equipment from "../../data/equipment.json";
-import type { Equipment } from "../../types/equipment";
 import type { UserProps } from "../../types/userProps";
 import type { Rental } from "../../types/user";
 
-const equipmentData: Equipment[] = equipment;
 
-function UserForm ({users, setUsers}: UserProps) {
+function UserForm ({users, setUsers,equipment}: UserProps) {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -109,7 +106,7 @@ function UserForm ({users, setUsers}: UserProps) {
                     } >
                         <option value="">Select Equipment</option>
 
-                        {equipmentData.map((item) => (
+                        {equipment?.map((item) => (
                             <option key={item.id} value={item.id}>
                                 {item.name}
                             </option>
