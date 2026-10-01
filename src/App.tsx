@@ -1,25 +1,41 @@
-import './App.css'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import EquipmentInventory from './components/equipment-inventory/EquipmentInventory'
-import UserInventory from './components/user-inventory/user-inventory'
-import RenderReviews from './components/reviews/reviews'
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './components/layout/Layout';
+import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
+import UserInventory from './components/user-inventory/user-inventory';
+import RenderReviews from './components/reviews/reviews';
+import { useState } from 'react';
+import equipmentData from "./data/equipment.json"
 
 function App() {
-
+const [equipment, setEquipment] = useState(equipmentData)
   return (
     <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
 
-      <Header />
+          <Route 
+                index 
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
+          />
 
-      <main>
-        <EquipmentInventory />
-        <UserInventory />
-        <RenderReviews />
-      </main>
-      
-      <Footer />
+          <Route 
+                path="equipment"
+                element={<EquipmentInventory equipment={equipment} setEquipment={setEquipment}/>} 
+          />
 
+          <Route 
+                path="user"
+                element={<UserInventory />} 
+          />
+
+          <Route 
+                path="reviews"
+                element={<RenderReviews equipment={equipment} />}
+          />
+
+        </Route>
+      </Routes>
     </>
   )
 }
