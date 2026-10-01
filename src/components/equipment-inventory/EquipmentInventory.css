@@ -81,3 +81,35 @@
     resize: vertical;
 }
 
+/* Buttons share the same appearance throughout the equipment page. */
+.equipment-inventory button {
+    min-height: 2.75rem;
+    padding: 0.65rem 1rem;
+    border: 2px solid #a33131;
+    border-radius: 0.25rem;
+    background-color: #a33131;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.equipment-inventory button:hover:not(:disabled) {
+    background-color: #702b2b;
+    border-color: #702b2b;
+    text-decoration: underline;
+}
+
+.equipment-inventory button:active:not(:disabled) {
+    box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.equipment-inventory button:disabled {
+    background-color: #e4dfdf;
+    color: #635757;
+    border-color: #887474;
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
