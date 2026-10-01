@@ -4,11 +4,21 @@ import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import UserInventory from './components/user-inventory/user-inventory';
 import RenderReviews from './components/reviews/reviews';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import equipmentData from "./data/equipment.json"
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
+
+const nextEquipmentId = useRef(
+  Math.max(0, ...equipmentData.map((item) => item.id)) + 1
+);
+
+function getNextEquipmentId() {
+  const id = nextEquipmentId.current;
+  nextEquipmentId.current += 1;
+  return id;
+}
   return (
     <>
       <Routes>
