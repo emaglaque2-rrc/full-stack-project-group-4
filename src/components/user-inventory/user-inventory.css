@@ -86,7 +86,36 @@
     font-weight: 600;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-inventory {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto;
+        padding: 0.5rem;
+    }
 
+    .user-inventory table {
+        min-width: 800px;
+    }
+
+    .user-form {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.5rem;
+    }
+
+    .user-form input,
+    .user-form select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .user-form button {
+        width: 100%;
+    }
+    
+}
 
 
 
