@@ -99,7 +99,7 @@ export default function EquipmentForm({
 
                 {/*Prevent page reloads while we build submit handler.
                 Also will be handling validation ourselves when the form is submitted. */}
-                <form noValidate onSubmit={(event) => event.preventDefault()}>
+                <form noValidate onSubmit={handleSubmit}>
                     {/* Each input displays its state value and updates it on change. */}
                     <div>
                         <label htmlFor="equipment-name">Equipment Name: </label>
@@ -186,6 +186,12 @@ export default function EquipmentForm({
                         />
                     </div>
 
+                    {/* show the message only when validation has set an error. */}
+                    {error && <p role="alert" className="error-message">{errorMessage}</p>}
+
+                    <button type="submit">
+                        Add Equipment
+                    </button>
                 </form>
             </section>
         )
