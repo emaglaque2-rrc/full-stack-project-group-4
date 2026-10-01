@@ -2,9 +2,12 @@ import type { Equipment } from '../../types/equipment';
 
 interface EquipmentItemProps {
     equipment: Equipment;
+    onRemove?: () => void; // Optional callback for removing the equipment item
 }
 
-function EquipmentItem({ equipment }: EquipmentItemProps) {
+function EquipmentItem({ 
+    equipment, onRemove 
+    }: EquipmentItemProps) {
     return (
         <article className="equipment-item">
             { /* Note: The images are in the public directory because they are static assets,

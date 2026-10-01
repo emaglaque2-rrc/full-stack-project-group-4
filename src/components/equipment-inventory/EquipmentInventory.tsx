@@ -7,7 +7,6 @@ import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
 function EquipmentInventory({ 
     equipment, setEquipment 
     }: equipmentProps) {
-
     const [searchValue, setSearchValue] = useState<string>('');
 
     const filteredEquipment = searchValue.trim()
