@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { NewEquipment } from '../../types/equipment';
 
 interface EquipmentFormProps {
@@ -10,6 +11,17 @@ interface EquipmentFormProps {
 export default function EquipmentForm({
     onAddEquipment,
     }: EquipmentFormProps) {
+        const [name, setName] = useState<string>('');
+        const [category, setCategory] = useState<string>('');
+        const [description, setDescription] = useState<string>('');
+        // Quantity: keep the raw input as text so the field can also be empty.
+        // Convert it to a number after validation when submitting.
+        const [quantity, setQuantity] = useState<string>('0');
+        const [availableQuantity, setAvailableQuantity] = useState<string>(0);
+        const [condition, setCondition] = useState<string>('');
+        const [location, setLocation] = useState<string>('');
+        const [picture, setPicture] = useState<string>('');
+
         return (
             <section>
                 <h2>Add New Equipment</h2>
