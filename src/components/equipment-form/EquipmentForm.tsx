@@ -97,8 +97,7 @@ export default function EquipmentForm({
             <section className="equipment-form">
                 <h3>Add New Equipment</h3>
 
-                {/*Prevent page reloads while we build submit handler.
-                Also will be handling validation ourselves when the form is submitted. */}
+                {/* Handle submission and validation through our custom submit handler */}
                 <form noValidate onSubmit={handleSubmit}>
                     {/* Each input displays its state value and updates it on change. */}
                     <div>
@@ -187,11 +186,16 @@ export default function EquipmentForm({
                     </div>
 
                     {/* show the message only when validation has set an error. */}
-                    {error && <p role="alert" className="error-message">{errorMessage}</p>}
+                    {errorMessage && (
+                        <p role="alert" className="error-message">
+                            {errorMessage}
+                        </p>
+                    )}
 
                     <button type="submit">
                         Add Equipment
                     </button>
+
                 </form>
             </section>
         )
