@@ -29,6 +29,13 @@ function EquipmentItem({
                 <p><strong>Location:</strong> {equipment.location}</p>
                 <p><strong>Category:</strong> {equipment.category}</p>
             </div>
+
+            {onRemove && (
+                <button type="button" onClick={onRemove}>
+                    Remove equipment
+                </button>
+            )}
+            
         </article>
     );
 }
