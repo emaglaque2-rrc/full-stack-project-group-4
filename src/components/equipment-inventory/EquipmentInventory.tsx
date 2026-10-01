@@ -63,6 +63,7 @@ function EquipmentInventory({
                     <EquipmentItem 
                         key={equipment.id}
                         equipment={equipment}
+                        onRemove={() => handleRemoveEquipment(equipment.id)}
                     />
                 ))}
             </div>
