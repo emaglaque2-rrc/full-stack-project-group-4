@@ -31,3 +31,18 @@
     overflow-wrap: anywhere;
 }
 
+/* Form and card containers */
+.equipment-inventory .equipment-form,
+.equipment-inventory .equipment-item {
+    min-width: 0;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #d4aaaa;
+    border-radius: 0.5rem;
+}
+
+.equipment-inventory .equipment-form {
+    margin-bottom: 1.5rem;
+    border-top: 5px solid #bb5757;
+    background-color: #fffafa;
+}
