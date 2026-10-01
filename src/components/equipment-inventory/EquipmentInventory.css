@@ -206,3 +206,35 @@
     margin: 0.35rem 0;
 }
 
+/* Make the equipment detail labels easy to pick out. */
+.equipment-inventory .equipment-item__details strong {
+    color: #702b2b;
+}
+
+/* Tablet layout */
+@media (max-width: 900px) {
+    .equipment-inventory__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .equipment-inventory {
+        padding: 0;
+    }
+
+    .equipment-inventory__grid,
+    .equipment-inventory .equipment-form form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .equipment-inventory > form input {
+        flex-basis: 100%;
+    }
+
+    .equipment-inventory > form button,
+    .equipment-inventory .equipment-form button {
+        width: 100%;
+    }
+}
