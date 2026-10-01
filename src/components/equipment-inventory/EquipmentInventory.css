@@ -121,3 +121,22 @@
     outline-offset: 3px;
 }
 
+/* The error message and submit button span both form columns. */
+.equipment-inventory .error-message,
+.equipment-inventory .equipment-form button {
+    grid-column: 1 / -1;
+}
+
+.equipment-inventory .equipment-form button {
+    justify-self: start;
+}
+
+.equipment-inventory .error-message {
+    margin: 0;
+    padding: 1rem;
+    border: 2px solid #a12525;
+    border-radius: 0.25rem;
+    background-color: #fff0f0;
+    color: #a12525;
+}
+
