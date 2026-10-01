@@ -174,3 +174,35 @@
     gap: 1.5rem;
 }
 
+/* A red top edge connects the cards to the add form. */
+.equipment-inventory .equipment-item {
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid #bb5757;
+}
+
+.equipment-inventory .equipment-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+}
+
+.equipment-inventory .equipment-item__description {
+    margin: 0 0 1rem;
+}
+
+.equipment-inventory .equipment-item__details {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: #f3e3e3;
+    border-radius: 0.25rem;
+}
+
+.equipment-inventory .equipment-item__details p {
+    margin: 0.35rem 0;
+}
+
