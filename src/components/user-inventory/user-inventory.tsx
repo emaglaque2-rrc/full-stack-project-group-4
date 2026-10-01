@@ -1,25 +1,18 @@
 import users from '../../data/user-info.json';
 import './user-inventory.css';
-
-interface Rental {
-    equipmentId:number;
-    dateRented: string;
-    dateReturned: string;
-    status: string;
-}
-
-
-interface User {
-    userId: number | string;
-    firstName: string;
-    lastName?: string;
-    userEmail: string;
-    rentals: Rental[];
-}
+import type { User } from "../../types/user"
+import type { UserProps } from '../../types/userProps'
 
 export const userData: User[] = users;
 
-function UserInventory() {
+function UserInventory({ users, setUsers }: UserProps) {
+
+    function handelRemoveUser(userId: number | string) {
+        setUsers(
+            users.filter((user) => user.userId !== userId)
+        )
+    }
+
     return (
         <section className="user-inventory">
             <h2> User Information</h2>
@@ -34,11 +27,12 @@ function UserInventory() {
                         <th>Date Rented</th>
                         <th>Date Returned</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {userData.map((user) =>
+                    {users.map((user) =>
                         user.rentals.map((rental) =>
                             <tr key={`${user.userId}-${rental.equipmentId}`}>
                                 <td>{user.userId}</td>
@@ -49,6 +43,10 @@ function UserInventory() {
                                 <td>{rental.dateRented}</td>
                                 <td>{rental.dateReturned}</td>
                                 <td>{rental.status}</td>
+
+                                <td>
+                                    <button type="button" onClick={() => handelRemoveUser(user.userId)}>Remove User</button>
+                                </td>
                             </tr>
                         ))}
                 </tbody>

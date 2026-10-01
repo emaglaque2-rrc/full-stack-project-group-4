@@ -37,3 +37,30 @@ footer {
   font-size: 0.75rem;
 }
 
+nav {
+  background-color:#0C0C0C;
+  padding: 1rem;
+}
+
+.page-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.page-links a {
+  color:#f4f4f4;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.page-links a:hover {
+  background-color: #bb5757;
+}
+
+.page-links a.active {
+  background-color: #bb5757;
+  color:#f4f4f4
+}

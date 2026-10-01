@@ -1,86 +1,240 @@
+/* Equipment page: a slightly stronger red theme. */
 .equipment-inventory {
-    padding: 2rem;
+    padding: 1rem;
+    color: #0c0c0c;
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+.equipment-inventory,
+.equipment-inventory * {
+    box-sizing: border-box;
 }
 
 .equipment-inventory h2 {
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
+    color: #923c3c;
+    padding-left: 0.75rem;
+    border-left: 5px solid #bb5757;
 }
 
-/* Individual equipment item styling */
+.equipment-inventory h3 {
+    margin: 0 0 1rem;
+    color: #702b2b;
+    font-size: 1.25rem;
+}
+
+.equipment-inventory h2,
+.equipment-inventory h3,
+.equipment-inventory p,
+.equipment-inventory label {
+    overflow-wrap: anywhere;
+}
+
+/* Form and card containers */
+.equipment-inventory .equipment-form,
 .equipment-inventory .equipment-item {
     min-width: 0;
     padding: 1rem;
-    
-    background-color: #f4f4f4;
-    border: 1px solid #bb5757;
+    background-color: #ffffff;
+    border: 1px solid #d4aaaa;
     border-radius: 0.5rem;
-
-    box-shadow: 0 2px 6px rgba(12, 12, 12, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.equipment-inventory .equipment-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(12, 12, 12, 0.2);
+.equipment-inventory .equipment-form {
+    margin-bottom: 1.5rem;
+    border-top: 5px solid #bb5757;
+    background-color: #fffafa;
 }
 
-/* Equipment image, maintains a consistent aspect ratio while keeping the full image visible. */
+/* Two columns for the add form; one column on small screens. */
+.equipment-inventory .equipment-form form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.equipment-inventory label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.equipment-inventory input,
+.equipment-inventory textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem;
+    border: 1px solid #887474;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #0c0c0c;
+    font: inherit;
+}
+
+.equipment-inventory input::placeholder {
+    color: #655858;
+}
+
+.equipment-inventory textarea {
+    min-height: 6rem;
+    resize: vertical;
+}
+
+/* Buttons share the same appearance throughout the equipment page. */
+.equipment-inventory button {
+    min-height: 2.75rem;
+    padding: 0.65rem 1rem;
+    border: 2px solid #a33131;
+    border-radius: 0.25rem;
+    background-color: #a33131;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.equipment-inventory button:hover:not(:disabled) {
+    background-color: #702b2b;
+    border-color: #702b2b;
+    text-decoration: underline;
+}
+
+.equipment-inventory button:active:not(:disabled) {
+    box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.equipment-inventory button:disabled {
+    background-color: #e4dfdf;
+    color: #635757;
+    border-color: #887474;
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+/* A visible outline helps keyboard users find the active control. */
+.equipment-inventory input:focus-visible,
+.equipment-inventory textarea:focus-visible,
+.equipment-inventory button:focus-visible {
+    outline: 3px solid #175fa6;
+    outline-offset: 3px;
+}
+
+/* The error message and submit button span both form columns. */
+.equipment-inventory .error-message,
+.equipment-inventory .equipment-form button {
+    grid-column: 1 / -1;
+}
+
+.equipment-inventory .equipment-form button {
+    justify-self: start;
+}
+
+.equipment-inventory .error-message {
+    margin: 0;
+    padding: 1rem;
+    border: 2px solid #a12525;
+    border-radius: 0.25rem;
+    background-color: #fff0f0;
+    color: #a12525;
+}
+
+/* The search form is a direct child of the equipment page. */
+.equipment-inventory > form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f3e3e3;
+    border: 1px solid #d4aaaa;
+    border-radius: 0.5rem;
+}
+
+.equipment-inventory > form label {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.equipment-inventory > form input {
+    flex: 1;
+}
+
+.equipment-inventory > p {
+    padding: 1.5rem;
+    border: 1px dashed #887474;
+    text-align: center;
+}
+
+/* Equipment cards */
+.equipment-inventory__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+/* A red top edge connects the cards to the add form. */
+.equipment-inventory .equipment-item {
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid #bb5757;
+}
+
 .equipment-inventory .equipment-item img {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: contain;
     margin-bottom: 1rem;
-
-    background-color: #f3e3e3;
-    border-radius: 0.8rem;
+    background-color: #ffffff;
 }
 
-/* Equipment item heading */
-.equipment-inventory .equipment-item h3 {
+.equipment-inventory .equipment-item__description {
     margin: 0 0 1rem;
 }
 
-/* Equipment item description */
-.equipment-inventory .equipment-item p {
-    margin: 0.25rem 0;
-}
-
-/* Responsive equipment grid layout, automatically adjusts the
-number of columns based on available space/width. Each column will be at least 250px wide, 
-but will shrink to fit smaller screens. */
-.equipment-inventory__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-    gap: 1.5rem;
-}
-
-/* Prevent long tect from overflowing outside equipment items. */
-.equipment-inventory .equipment-item p,
-.equipment-inventory .equipment-item h3 {
-    overflow-wrap: break-word;
-}
-
-/* Equipment description and details spacing */
-.equipment-inventory .equipment-item__description {
-    margin-bottom: 1rem;
-}
-
-/* Equipment details section spacing and background */
 .equipment-inventory .equipment-item__details {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
     background-color: #f3e3e3;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
 }
 
 .equipment-inventory .equipment-item__details p {
-    margin: 0.25rem 0;
+    margin: 0.35rem 0;
 }
 
-/* Reduce inventory padding on smaller screens for better usability and to maximize space. */
+/* Make the equipment detail labels easy to pick out. */
+.equipment-inventory .equipment-item__details strong {
+    color: #702b2b;
+}
+
+/* Tablet layout */
+@media (max-width: 900px) {
+    .equipment-inventory__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile layout */
 @media (max-width: 600px) {
     .equipment-inventory {
-        padding: 1rem;
+        padding: 0;
+    }
+
+    .equipment-inventory__grid,
+    .equipment-inventory .equipment-form form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .equipment-inventory > form input {
+        flex-basis: 100%;
+    }
+
+    .equipment-inventory > form button,
+    .equipment-inventory .equipment-form button {
+        width: 100%;
     }
 }

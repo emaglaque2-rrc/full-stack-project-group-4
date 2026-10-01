@@ -5,7 +5,7 @@ export interface Review {
     product: string;
     body: string;
     rating: number;
-    datePosted: Date;
-    dateUpdated?: Date;
+    datePosted: string;
+    dateUpdated?: string;
 }    
 
