@@ -49,6 +49,17 @@ export default function EquipmentForm({
             // Convert the input strings into numbres for the equipment object.
             const quantityNumber = Number(quantity);
             const availableQuantityNumber = Number(availableQuantity);
+
+            if (
+                !Number.isInteger(quantityNumber) ||
+                !Number.isInteger(availableQuantityNumber) ||
+                quantityNumber < 0 ||
+                availableQuantityNumber < 0
+            ) {
+                setErrorMessage('Quantities must be whole numbers that are zero or greater.');
+                return;
+            }
+
         }
 
         return (
