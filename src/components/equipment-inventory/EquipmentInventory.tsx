@@ -7,10 +7,10 @@ import type { NewEquipment } from '../../types/equipment';
 import EquipmentForm from '../equipment-form/EquipmentForm';
 
 function EquipmentInventory({ 
-    equipment, 
-    setEquipment, 
+    equipment,
+    setEquipment,
     getNextEquipmentId
-    }: equipmentProps) {
+}: equipmentProps) {
     const [searchValue, setSearchValue] = useState<string>('');
 
     const filteredEquipment = searchValue.trim()
@@ -45,6 +45,25 @@ function EquipmentInventory({
                 })
             })
         }
+
+    // Receive validated form details and add equipment to the shared catalogue.
+    function handleAddEquipment(newEquipment: NewEquipment) {
+        // Both props are optional (from the interface), but adding equipment
+        // requires both the setter and the ID generator. Stop before
+        // allocating an ID if either function is missing.
+        if (!setEquipment || !getNextEquipmentId) {
+            return; // Stop if the setter or ID generator is not provided.
+        }
+
+        const equipmentToAdd = {
+            ...newEquipment,
+            id: getNextEquipmentId() // Allocate a unique ID for the new equipment entry.
+        };
+
+        setEquipment((currentEquipment) => {
+            return [...currentEquipment, equipmentToAdd];
+        })
+    }
 
     return(
         <section className="equipment-inventory">
