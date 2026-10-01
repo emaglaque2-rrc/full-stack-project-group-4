@@ -42,11 +42,36 @@ The project will have ***3*** main components:
 
 ### Kanban Contributions
 
-- Set up project repository: Edraque
-- Project initialization: Edraque
-- Team Vercel Management: Edraque
-- Project Readme: Seth, Edraque, Zalak
-- High-level component 1-3: Edraque, Zalak, Seth
-- App stylesheet and style guide: Zalak
-- Styling 1-3: Edraque, Zalak, Seth
-- app integration: Zalak
+#### Sprint 1
+
+| Task | Contributors |
+|---|---|
+| Repository setup | Edraque |
+| Project initialization | Edraque |
+| Team Vercel Management | Edraque |
+| Project README | Seth, Edraque, Zalak |
+| Equipment Inventory Component | Edraque |
+| Reviews Component | Seth |
+| User Inventory Component | Zalak |
+| App Stylesheet and Style Guide | Zalak |
+| Individual Component Styling | Edraque, Zalak, Seth |
+| App Integration | Zalak |
+
+#### Sprint 2
+
+| Task | Contributors |
+|---|---|
+| Multi-page Navigation | Edraque |
+| Navigation Interface | Zalak |
+| Shared State Across Pages | Seth |
+| EquipmentInventory Feature Page | Edraque |
+| EquipmentInventory Search Component | Edraque |
+| EquipmentInventory Form Component | Edraque |
+| Reviews Feature Page | Seth |
+| Reviews Form Component | Seth |
+| Reviews Addition Component | Seth |
+| UserInventory Feature Page | Zalak |
+| UserInventory Form Component | Zalak |
+| UserInventory Addition Component | Zalak |
+| Individual Component Styling | Edraque, Zalak, Seth |
+| Project README | Edraque |
