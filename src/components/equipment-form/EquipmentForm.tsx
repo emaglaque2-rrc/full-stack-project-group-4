@@ -46,6 +46,9 @@ export default function EquipmentForm({
                 return;
             }
 
+            // Convert the input strings into numbres for the equipment object.
+            const quantityNumber = Number(quantity);
+            const availableQuantityNumber = Number(availableQuantity);
         }
 
         return (
