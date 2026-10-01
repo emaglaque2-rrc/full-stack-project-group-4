@@ -26,6 +26,28 @@ export default function EquipmentForm({
         // This is a single string for simplicity, but could be an array of strings if we wanted to display multiple errors.
         const [errorMessage, setErrorMessage] = useState<string>('');
 
+        function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+            // Prevent the browser from reloading the page on submission.
+            event.preventDefault();
+
+            setErrorMessage(''); // Clear any previous error message.
+
+            if (
+                !name.trim() ||
+                !category.trim() ||
+                !description.trim() ||
+                !quantity.trim() ||
+                !availableQuantity.trim() ||
+                !condition.trim() ||
+                !location.trim() ||
+                !picture.trim()
+            ) {
+                setErrorMessage('Please complete all equipment fields.');
+                return;
+            }
+
+        }
+
         return (
             <section className="equipment-form">
                 <h3>Add New Equipment</h3>
