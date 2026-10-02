@@ -16,10 +16,10 @@ function RenderReviews({ equipment }: equipmentProps) {
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    setValidationError("")
     let currentDate = new Date().toISOString().split("T")[0];
 
-    if (title && rating && author && product && body !== null) {
+    if (validateReview()) {
       const review: Review = {
         id: Date.now(),
         title: title,
@@ -33,8 +33,26 @@ function RenderReviews({ equipment }: equipmentProps) {
     }
   }
 
-  function validateReview() {
-    return;
+  function validateReview(): boolean {
+    if (!title.trim() || !author.trim() || !body.trim() || !product.trim()) {
+      setValidationError("Please fill out all fields.");
+      return false;
+    }
+
+    if (title.length > 50){
+        setValidationError(`Title must not exceed 50 characters. (${title.length})`)
+        return false
+    }
+
+    if (author.length > 50) {
+        setValidationError(`Author name must not exceed 50 characters. (${author.length})`)
+    }
+
+    if (body.length > 300) {
+        setValidationError(`Review body must not exceed 300 characters. (${body.length})`)
+        return false
+    }
+    return true
   }
 
   function addReview(review: Review) {
@@ -62,16 +80,16 @@ function RenderReviews({ equipment }: equipmentProps) {
           ))}
         </section>
 
-        {/* title */}
         <form className="review-form" id="reviewForm" onSubmit={handleSubmit}>
           <section className="review-items">
             <h2>Leave a Review:</h2>
+            <p id="validationError">{validationError}</p>
+            {/* title */}
             <label htmlFor="title-field">Title:</label>
             <input
               type="text"
               name="title"
               id="review-title"
-              required
               placeholder="Review Title"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -82,7 +100,6 @@ function RenderReviews({ equipment }: equipmentProps) {
               type="range"
               name="rating"
               id="rating-slider"
-              required
               value={rating}
               min={1}
               max={10}
@@ -96,7 +113,6 @@ function RenderReviews({ equipment }: equipmentProps) {
               type="text"
               name="author"
               id="review-author"
-              required
               placeholder="Name"
               onChange={(e) => setAuthor(e.target.value)}
             />
@@ -106,7 +122,6 @@ function RenderReviews({ equipment }: equipmentProps) {
             <select
               name="product"
               id=""
-              required
               onChange={(e) => setProduct(e.target.value)}
             >
               <option value="">Select Equipment</option>
@@ -118,14 +133,14 @@ function RenderReviews({ equipment }: equipmentProps) {
             </select>
 
             {/* body */}
-            <label htmlFor="body-field">Body:</label>
+            <label htmlFor="review-body">Body:</label>
             <textarea
               name="body"
               id="review-body"
-              required
               placeholder="What do you think..."
               onChange={(e) => setBody(e.target.value)}
             />
+
             <button type="submit">Submit</button>
           </section>
         </form>
