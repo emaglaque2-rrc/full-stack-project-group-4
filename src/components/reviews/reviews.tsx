@@ -85,7 +85,7 @@ function RenderReviews({ equipment }: equipmentProps) {
             <h2>Leave a Review:</h2>
             <p id="validationError">{validationError}</p>
             {/* title */}
-            <label htmlFor="title-field">Title:</label>
+            <label htmlFor="title-field">Title ({title.length}/50)</label>
             <input
               type="text"
               name="title"
@@ -108,7 +108,7 @@ function RenderReviews({ equipment }: equipmentProps) {
             />
 
             {/* author */}
-            <label htmlFor="author-field">Author:</label>
+            <label htmlFor="author-field">Author ({author.length}/50)</label>
             <input
               type="text"
               name="author"
@@ -133,7 +133,7 @@ function RenderReviews({ equipment }: equipmentProps) {
             </select>
 
             {/* body */}
-            <label htmlFor="review-body">Body:</label>
+            <label htmlFor="review-body">Body ({body.length}/300)</label>
             <textarea
               name="body"
               id="review-body"
