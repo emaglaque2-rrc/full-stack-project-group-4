@@ -68,7 +68,7 @@ p {
   gap: 0.5rem;
 }
 
-.review-items input,
+.review-items input:not([type="range"]),
 .review-items select {
   padding: 0.5rem;
   border: 2px solid #bb5757;
