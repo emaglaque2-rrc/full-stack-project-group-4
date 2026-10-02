@@ -1,10 +1,9 @@
-import reviews from "../../data/reviews.json";
-import type { equipmentProps } from "../../types/equipmentProps";
 import type { Review } from "../../types/review";
 import { useState } from "react";
+import type { RenderReviewsProps } from "../../types/renderReviewProps";
 import "./reviews.css";
 
-function RenderReviews({ equipment }: equipmentProps) {
+function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsProps) {
   const [title, setTitle] = useState<string>("");
   const [rating, setRating] = useState<number>(5);
   const [author, setAuthor] = useState<string>("");
@@ -12,7 +11,6 @@ function RenderReviews({ equipment }: equipmentProps) {
   const [body, setBody] = useState<string>("");
 
   const [validationError, setValidationError] = useState("");
-  const [reviewList, setReviewList] = useState(reviews);
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
