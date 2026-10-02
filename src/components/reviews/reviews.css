@@ -6,14 +6,21 @@
 }
 
 .review-display h2 {
-color: #0c0c0c;
-background-color: #bb5757;
-border: 2px solid #0c0c0c;
+color: #8d3d3d;
+border-top:2px solid #bb5757;
+border-bottom:2px solid #bb5757;
 border-radius: 5px;
 padding-bottom: 0.5rem;
 }
 
+p{
+    overflow: wrap;
+}
+
 .review-display article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 2px solid #bb5757;
     border-left: 4px solid #bb5757;
     padding: 1rem;
@@ -26,9 +33,14 @@ padding-bottom: 0.5rem;
 }
 
 .review-display h3 {
-    color: #bb5757;
+    color: #0c0c0c;
+    border-radius: 6px;
     margin-top: 0;
-    margin-bottom: 0.5rem 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 0.5%;
+    border-left: 3px solid #bb5757;
+    border-right: 3px solid #bb5757;
 }
 
 .review-form {
@@ -44,9 +56,11 @@ padding-bottom: 0.5rem;
 }
 
 .review-form h2 {
-    
-    border-radius: 8px;
-
+color: #8d3d3d;
+border-top:2px solid #bb5757;
+border-bottom:2px solid #bb5757;
+border-radius: 5px;
+padding-bottom: 0.5rem;
 }
 .review-items {
     display: flex;
@@ -81,6 +95,14 @@ padding-bottom: 0.5rem;
     gap: 2rem;
     align-items: flex-start;
 }
+
+button {
+    background-color: #bb5757;
+    color: #0c0c0c;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
 
 
 
