@@ -11,6 +11,7 @@ function RenderReviews({ equipment }: equipmentProps) {
   const [product, setProduct] = useState<string>("");
   const [body, setBody] = useState<string>("");
 
+  const [validationError, setValidationError] = useState("");
   const [reviewList, setReviewList] = useState(reviews);
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
@@ -30,6 +31,10 @@ function RenderReviews({ equipment }: equipmentProps) {
       };
       addReview(review);
     }
+  }
+
+  function validateReview() {
+    return;
   }
 
   function addReview(review: Review) {
@@ -57,6 +62,7 @@ function RenderReviews({ equipment }: equipmentProps) {
           ))}
         </section>
 
+        {/* title */}
         <form className="review-form" id="reviewForm" onSubmit={handleSubmit}>
           <section className="review-items">
             <h2>Leave a Review:</h2>
@@ -65,15 +71,18 @@ function RenderReviews({ equipment }: equipmentProps) {
               type="text"
               name="title"
               id="review-title"
+              required
               placeholder="Review Title"
               onChange={(e) => setTitle(e.target.value)}
             />
 
+            {/* rating */}
             <label htmlFor="rating-slider">Rating: {rating}/10</label>
             <input
               type="range"
               name="rating"
               id="rating-slider"
+              required
               value={rating}
               min={1}
               max={10}
@@ -81,19 +90,23 @@ function RenderReviews({ equipment }: equipmentProps) {
               onChange={(e) => setRating(Number(e.target.value))}
             />
 
+            {/* author */}
             <label htmlFor="author-field">Author:</label>
             <input
               type="text"
               name="author"
               id="review-author"
+              required
               placeholder="Name"
               onChange={(e) => setAuthor(e.target.value)}
             />
 
+            {/* product */}
             <label htmlFor="product-selection">Product:</label>
             <select
               name="product"
               id=""
+              required
               onChange={(e) => setProduct(e.target.value)}
             >
               <option value="">Select Equipment</option>
@@ -104,10 +117,12 @@ function RenderReviews({ equipment }: equipmentProps) {
               ))}
             </select>
 
+            {/* body */}
             <label htmlFor="body-field">Body:</label>
             <textarea
               name="body"
               id="review-body"
+              required
               placeholder="What do you think..."
               onChange={(e) => setBody(e.target.value)}
             />
