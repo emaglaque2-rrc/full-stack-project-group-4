@@ -1,5 +1,5 @@
 import users from '../../data/user-info.json';
-import './user-inventory.css';
+import  './user-inventory.css';
 import type { User } from "../../types/user"
 import type { UserProps } from '../../types/userProps'
 
@@ -7,9 +7,17 @@ export const userData: User[] = users;
 
 function UserInventory({ users, setUsers }: UserProps) {
 
-    function handelRemoveUser(userId: number | string) {
+    function handelRemoveRental(userId: number | string, equipmentId: number) {
         setUsers(
-            users.filter((user) => user.userId !== userId)
+            users.map((user) => {
+                if (user.userId === userId) {
+                    return {
+                        ...user,
+                        rentals: user.rentals.filter((rental) => rental.equipmentId !== equipmentId)
+                    };
+                }
+                return user;
+            })
         )
     }
 
@@ -45,7 +53,7 @@ function UserInventory({ users, setUsers }: UserProps) {
                                 <td>{rental.status}</td>
 
                                 <td>
-                                    <button type="button" onClick={() => handelRemoveUser(user.userId)}>Remove User</button>
+                                    <button type="button" onClick={() => handelRemoveRental(user.userId, rental.equipmentId)}>Remove Rental</button>
                                 </td>
                             </tr>
                         ))}
