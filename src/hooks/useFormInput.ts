@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 /**
- * Very verbose description of what this hook does, read TLDR at the bottom if you don't want to read the whole thing 8).
+ * ***NOTE: Very verbose description of what this hook does, read TLDR at the bottom if you don't want to read the whole thing 8).
+ * 
  * Manages the field values and displayed error message for a form.
  * 
  * This hook handles presentation state only. DOesn't validate business rules, submit the form,
@@ -77,5 +78,8 @@ import { useState } from 'react';
 export function useFormInput<TValues extends object>(
     initialValues: TValues,
 ) {
+    const [values, setValues] = useState<TValues>(initialValues);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
+    
 };
