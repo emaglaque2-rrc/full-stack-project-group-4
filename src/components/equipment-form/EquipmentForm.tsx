@@ -136,7 +136,8 @@ export default function EquipmentForm({
                             id="equipment-name"
                             type="text"
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("name", event.target.value)}
                         />
                     </div>
 
@@ -146,7 +147,8 @@ export default function EquipmentForm({
                             id="equipment-category"
                             type="text"
                             value={category}
-                            onChange={(event) => setCategory(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("category", event.target.value)}
                         />
                     </div>
 
@@ -155,7 +157,8 @@ export default function EquipmentForm({
                         <textarea 
                             id="equipment-description"
                             value={description}
-                            onChange={(event) => setDescription(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("description", event.target.value)}
                         />
                     </div>
 
@@ -168,7 +171,8 @@ export default function EquipmentForm({
                             value={quantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("quantity", event.target.value)}
                         />
                     </div>
 
@@ -180,7 +184,8 @@ export default function EquipmentForm({
                             value={availableQuantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setAvailableQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("availableQuantity", event.target.value)}
                         />
                     </div>
 
@@ -190,7 +195,8 @@ export default function EquipmentForm({
                             id="equipment-condition"
                             type="text"
                             value={condition}
-                            onChange={(event) => setCondition(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("condition", event.target.value)}
                         />
                     </div>
 
@@ -200,7 +206,8 @@ export default function EquipmentForm({
                             id="equipment-location"
                             type="text"
                             value={location}
-                            onChange={(event) => setLocation(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("location", event.target.value)}
                         />
                     </div>
 
@@ -211,7 +218,8 @@ export default function EquipmentForm({
                             type="text"
                             value={picture}
                             placeholder="example.jpg"
-                            onChange={(event) => setPicture(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("picture", event.target.value)}
                         />
                     </div>
 
