@@ -46,6 +46,15 @@ import { useState } from 'react';
  *      ratings: 5
  * });
  * 
+ * // Update individual fields:
+ * setFieldValue("title", "ts fire twinnem!!");
+ * setFieldValue("ratings", 4);
+ * 
+ * // Display feedback from the submission/validation flow:
+ * setErrorMessage("Unable to save the review.");
+ * 
+ * // After a successful submission:
+ * resetForm(); // Restores the defaults (title -> "", ratings -> 5) and clears the error message(s0).
  */
 export function useFormInput<TValues extends object>(
     initialValues: TValues,
