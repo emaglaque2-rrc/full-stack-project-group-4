@@ -4,15 +4,17 @@ import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import RenderReviews from './components/reviews/reviews';
 import { useState, useRef } from 'react';
+import reviews from "./data/reviews.json"
 import equipmentData from "./data/equipment.json"
 import UserPage from './components/user-page/user-page'
 import userData from "./data/user-info.json"
 import type { User } from './types/user';
+import type { Review } from './types/review';
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
 const [users, setUsers] = useState<User[]>(userData)
-
+ const [reviewList, setReviewList] = useState<Review[]>(reviews);
 
 // Start the counter above the highest initial equipment ID in the JSON data. 
 // This ensures that new equipment entries will have unique IDs.
@@ -62,7 +64,7 @@ function getNextEquipmentId() {
 
           <Route 
                 path="reviews"
-                element={<RenderReviews equipment={equipment} />}
+                element={<RenderReviews equipment={equipment} reviewList={reviewList} setReviewList={setReviewList} />}
           />
 
         </Route>
