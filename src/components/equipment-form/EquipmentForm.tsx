@@ -1,5 +1,6 @@
-import { useState, type SubmitEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import type { NewEquipment } from '../../types/equipment';
+import { useFormInput } from '../../hooks/useFormInput';
 
 interface EquipmentFormProps {
     // Callback supplied by the parent to receive valid equipment details.
