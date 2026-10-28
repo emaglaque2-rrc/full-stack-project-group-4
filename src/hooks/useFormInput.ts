@@ -34,6 +34,17 @@ import { useState } from 'react';
  * Call this after a successful submission or an intentional reset. And again..
  * It does not clear the error message unless you pass "" as the default.
  * 
+ * @example
+ * const {
+ *  values,
+ *  setFieldValue,
+ *  errorMessage,
+ *  setErrorMessage,
+ *  resetForm
+ * } = useFormInput({
+ *      title: "",
+ *      ratings: 5
+ * });
  * 
  */
 export function useFormInput<TValues extends object>(
