@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 /**
+ * Very verbose description of what this hook does, read TLDR at the bottom if you don't want to read the whole thing 8).
  * Manages the field values and displayed error message for a form.
  * 
  * This hook handles presentation state only. DOesn't validate business rules, submit the form,
@@ -55,6 +56,23 @@ import { useState } from 'react';
  * 
  * // After a successful submission:
  * resetForm(); // Restores the defaults (title -> "", ratings -> 5) and clears the error message(s0).
+ * 
+ * ****IMPORTANT SOURCE*****:
+ * TypeScript reference for Generics and Generic Constraints: 
+ * https://www.typescriptlang.org/docs/handbook/2/generics.html
+ * https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints
+ * 
+ * AND AGAIN, TLDR:
+ * 1. TValues is our chosen name for a generic type parameter.
+ * It represents the shape of this form's values.
+ * 
+ * 2. "extends object" requires an object type rather than a primitive type (string, number, boolean, etc.) or null/undefined.
+ * It allows us to use keyof TValues to get the names of the form's fields, which we need for setFieldValue().
+ * 
+ * 3. TypeScript infers the fields from the supplied initialValues. For example,
+ * { title: "", ratings: 5 } gives us a string title and a numeric rating.
+ * 
+ * 4. This lets Equipment, User, and Review forms reuse the same hook while retaining their own field names and value types.
  */
 export function useFormInput<TValues extends object>(
     initialValues: TValues,
