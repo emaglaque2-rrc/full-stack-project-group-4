@@ -9,9 +9,11 @@ import { useState } from 'react';
  * generate IDs, or access a service/repo. The component controls those
  * operations and decides when to call this hook's functions.
  * 
- * Each call creates independent state for a single form. Equipment, User, and Review
- * forms can reuse this hook without sharing state, entered values, or error messages because
- * each call to the hook creates a new state instance.
+ * Each component using this hook has its own form state. Equipment, User, and Review
+ * forms can reuse the hook without sharing values, error messages, or reset behavior.
+ * 
+ * React preserves that state across re-renders. Separate uses of the hook
+ * manage separate state, so multiple forms can be displayed at once without interfering with each other.
  * 
  * Intended for flat form values (strings, numbers, and booleans). Updates and resets make shallow
  * copies; nested objects are not deep-copied.
@@ -32,9 +34,8 @@ import { useState } from 'react';
  * - errorMessage: The current form-wide feedback message
  * - setErrorMessage: Sets that feedback. Pass "" to clear it.
  * Updating a field does not automatically clear the error message.
- * - resetForm: Restores the supplied defaults and clears the error.
- * Call this after a successful submission or an intentional reset. And again..
- * It does not clear the error message unless you pass "" as the default.
+ * - resetForm: Restores all fields to the supplied initialValues and
+ * always clears errorMessage. Call this after a successful submission or an intentional reset.
  * 
  * @example
  * const {
@@ -67,8 +68,9 @@ import { useState } from 'react';
  * 1. TValues is our chosen name for a generic type parameter.
  * It represents the shape of this form's values.
  * 
- * 2. "extends object" requires an object type rather than a primitive type (string, number, boolean, etc.) or null/undefined.
- * It allows us to use keyof TValues to get the names of the form's fields, which we need for setFieldValue().
+ * 2. "extends object" constrains TValues to an object type because this hook expects
+ * a collection of named form fields. It does not specify the field names or enforce
+ * flat values. "keyof TValues" identifies the allowed field names  for setFieldValue().
  * 
  * 3. TypeScript infers the fields from the supplied initialValues. For example,
  * { title: "", ratings: 5 } gives us a string title and a numeric rating.
@@ -106,12 +108,19 @@ export function useFormInput<TValues extends object>(
     /**
      * Restores all fields to the supplied defaults and clear form-wide feedback.
      * 
-     * Call this after a successful submission or an intentional reset. It does not 
-     * clear the error message unless you pass "" as the default.
-     * This does not save data (YETTT) undo a previously submitted form...
+     * Call this after a successful submission or an intentional reset.
+     * This does not save data or undo an operation already completed thruu a service/repo.
      */
     function resetForm(): void {
         setValues({ ...initialValues });
         setErrorMessage("");
     }
+
+    return {
+        values,
+        setFieldValue,
+        errorMessage,
+        setErrorMessage,
+        resetForm,
+    };
 };
