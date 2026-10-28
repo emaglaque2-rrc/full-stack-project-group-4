@@ -17,6 +17,10 @@ import { useState } from 'react';
  * @typeParam TValues - THe shape of the form's values. TypeScript normally 
  * infers this from initialValues, so callers do not need to specify it explicitly.
  * 
+ * @param initialValues - Deaults for every field managed by this hook.
+ * These initialize the form and are also used by resetForm() to restore the form to its original state.
+ * Keep these defaults consistent for a creation form. Passing different defaults does not automatically replace
+ * the current field values.
  * 
  */
 export function useFormInput<TValues extends object>(
