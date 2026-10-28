@@ -14,8 +14,10 @@ import { useState } from 'react';
  * Intended for flat form values (strings, numbers, and booleans). Updates and resets make shallow
  * copies; nested objects are not deep-copied.
  * 
- *
- * @param initialValues 
+ * @typeParam TValues - THe shape of the form's values. TypeScript normally 
+ * infers this from initialValues, so callers do not need to specify it explicitly.
+ * 
+ * 
  */
 export function useFormInput<TValues extends object>(
     initialValues: TValues,
