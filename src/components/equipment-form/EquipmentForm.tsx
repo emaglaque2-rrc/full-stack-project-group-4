@@ -117,15 +117,9 @@ export default function EquipmentForm({
             // Send the equipment details to the callback provided by the parent.
             onAddEquipment(newEquipment);
 
-            // Reset the form fields after passing the valid equipment to the parent.
-            setName('');
-            setCategory('');
-            setDescription('');
-            setQuantity('');
-            setAvailableQuantity('');
-            setCondition('');
-            setLocation('');
-            setPicture('');
+            // Reset the form fields with initial field values
+            // after passing the valid equipment to the parent and clears the displayed error message.
+            resetForm();
 
         }
 
