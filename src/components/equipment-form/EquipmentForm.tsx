@@ -29,6 +29,20 @@ export default function EquipmentForm({
             picture: '',
         });
 
+        // REad the current field values using the same names as before.
+        // Just destructuring it to let the existing validation and object construction 
+        // stay readable without changing the field names. The values object is still available for other uses.
+        const {
+            name,
+            category,
+            description,
+            quantity,
+            availableQuantity,
+            condition,
+            location,
+            picture
+        } = values;
+
 
         function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
             // Prevent the browser from reloading the page on submission.
