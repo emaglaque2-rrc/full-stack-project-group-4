@@ -103,4 +103,8 @@ export function useFormInput<TValues extends object>(
         }));
     }
 
+    function resetForm(): void {
+        setValues({ ...initialValues });
+        setErrorMessage("");
+    }
 };
