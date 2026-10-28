@@ -103,6 +103,13 @@ export function useFormInput<TValues extends object>(
         }));
     }
 
+    /**
+     * Restores all fields to the supplied defaults and clear form-wide feedback.
+     * 
+     * Call this after a successful submission or an intentional reset. It does not 
+     * clear the error message unless you pass "" as the default.
+     * This does not save data (YETTT) undo a previously submitted form...
+     */
     function resetForm(): void {
         setValues({ ...initialValues });
         setErrorMessage("");
