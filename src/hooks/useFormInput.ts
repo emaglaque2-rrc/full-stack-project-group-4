@@ -22,6 +22,19 @@ import { useState } from 'react';
  * Keep these defaults consistent for a creation form. Passing different defaults does not automatically replace
  * the current field values.
  * 
+ * @returns An object containing:
+ * - values: Current field values. Bind each input's value/checked prop to its
+ * corresponding property so the displayed input follows state.
+ * - setFieldValue: Updates one field while preserving the other fields.
+ * The field name and new value must match the form's inferred types.
+ * - errorMessage: The current form-wide feedback message
+ * - setErrorMessage: Sets that feedback. Pass "" to clear it.
+ * Updating a field does not automatically clear the error message.
+ * - resetForm: Restores the supplied defaults and clears the error.
+ * Call this after a successful submission or an intentional reset. And again..
+ * It does not clear the error message unless you pass "" as the default.
+ * 
+ * 
  */
 export function useFormInput<TValues extends object>(
     initialValues: TValues,
