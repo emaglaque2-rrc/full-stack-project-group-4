@@ -81,5 +81,10 @@ export function useFormInput<TValues extends object>(
     const [values, setValues] = useState<TValues>(initialValues);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
-    
+    function setFieldValue<TKey extends keyof TValues>(
+        field: TKey,
+        value: TValues[TKey]
+    ): void {
+        
+    }
 };
