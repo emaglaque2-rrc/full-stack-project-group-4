@@ -63,7 +63,7 @@ import { useState } from 'react';
  * https://www.typescriptlang.org/docs/handbook/2/generics.html
  * https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints
  * 
- * AND AGAIN, TLDR:
+ * ---- TLDR: ----------------------------------------------------------------------------
  * 1. TValues is our chosen name for a generic type parameter.
  * It represents the shape of this form's values.
  * 
@@ -97,6 +97,10 @@ export function useFormInput<TValues extends object>(
         field: TKey,
         value: TValues[TKey]
     ): void {
-
+        setValues((currentValues) => ({
+            ...currentValues,
+            [field]: value,
+        }));
     }
+
 };
