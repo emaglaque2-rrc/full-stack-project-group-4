@@ -81,10 +81,16 @@ export function useFormInput<TValues extends object>(
     const [values, setValues] = useState<TValues>(initialValues);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
+    /**
+     * Updates one field using its property name while preserving the other fields. 
+     * 
+     * TKey must be a key in TValues. TValues[TKey] ensures that the new 
+     * value matches that particular field's type.
+     */
     function setFieldValue<TKey extends keyof TValues>(
         field: TKey,
         value: TValues[TKey]
     ): void {
-        
+
     }
 };
