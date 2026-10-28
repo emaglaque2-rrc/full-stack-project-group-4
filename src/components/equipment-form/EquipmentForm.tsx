@@ -12,20 +12,23 @@ interface EquipmentFormProps {
 export default function EquipmentForm({
     onAddEquipment,
     }: EquipmentFormProps) {
-        const [name, setName] = useState<string>('');
-        const [category, setCategory] = useState<string>('');
-        const [description, setDescription] = useState<string>('');
-        // Quantity and availableQuantity: keep the raw input as text so the field can also be empty.
-        // Convert it to a number after validation when submitting.
-        const [quantity, setQuantity] = useState<string>('');
-        const [availableQuantity, setAvailableQuantity] = useState<string>('');
-        const [condition, setCondition] = useState<string>('');
-        const [location, setLocation] = useState<string>('');
-        const [picture, setPicture] = useState<string>('');
+        const {
+            values,
+            setFieldValue,
+            errorMessage,
+            setErrorMessage,
+            resetForm,
+        } = useFormInput({
+            name: '',
+            category: '',
+            description: '',
+            quantity: '',
+            availableQuantity: '',
+            condition: '',
+            location: '',
+            picture: '',
+        });
 
-        // Store validation feedback to display in the form.
-        // This is a single string for simplicity, but could be an array of strings if we wanted to display multiple errors.
-        const [errorMessage, setErrorMessage] = useState<string>('');
 
         function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
             // Prevent the browser from reloading the page on submission.
