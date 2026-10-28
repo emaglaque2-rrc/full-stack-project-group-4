@@ -7,8 +7,23 @@ interface EquipmentFormProps {
     onAddEquipment: (newEquipment: NewEquipment) => void;
 }
 
-// Collects and validates details for a new catalogue entry.
-// The parent handles adding that entry to the shared equipment state.
+/**
+ * Collects details for a new equipment catalogue entry.
+ * 
+ * Uses useFormInput() to manage all field values, displayed feedback/error messages,
+ * and resetting the form after a successful submission. This consolidates reusable
+ * presentation logic so other forms can use the same state-management behaviour.
+ * 
+ * Quantity fields remain strings while being edited so they can be empty. 
+ * The submit handler checks and converts them before building the NewEquipment object. 
+ * 
+ * Existing validation remains in this component *for now* during the hook integration
+ * step. Business rules will move to the appropriate service as part of the service refactor.
+ * 
+ * Valid equipment details are passed through onAddEquipment. This component and 
+ * useFormInput do not generate equipment IDs or access a repo.
+ * 
+ */
 export default function EquipmentForm({
     onAddEquipment,
     }: EquipmentFormProps) {
