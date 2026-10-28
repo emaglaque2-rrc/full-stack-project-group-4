@@ -86,6 +86,12 @@ export function useFormInput<TValues extends object>(
      * 
      * TKey must be a key in TValues. TValues[TKey] ensures that the new 
      * value matches that particular field's type.
+     * 
+     * ****IMPORTANT SOURCE*****:
+     * keyof TValues restricts field names to keys in our form values.
+     * TValues[TKey] looks up the value type for the selected field.
+     * https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
+     * https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
      */
     function setFieldValue<TKey extends keyof TValues>(
         field: TKey,
