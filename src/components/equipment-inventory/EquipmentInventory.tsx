@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import './EquipmentInventory.css';
-import type { equipmentProps } from '../../types/equipmentProps';
+import type { EquipmentInventoryProps } from '../../types/equipmentInventoryProps';
 import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
-import type { NewEquipment } from '../../types/equipment';
 import EquipmentForm from '../equipment-form/EquipmentForm';
 
 function EquipmentInventory({ 
     equipment,
-    setEquipment,
-    getNextEquipmentId
-}: equipmentProps) {
+    loading,
+    errorMessage,
+    onAddEquipment,
+    onRemoveEquipment,
+}: EquipmentInventoryProps) {
     const [searchValue, setSearchValue] = useState<string>('');
 
     const filteredEquipment = searchValue.trim()
