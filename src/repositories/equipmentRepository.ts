@@ -22,9 +22,13 @@ let nextId =
     Math.max(...equipment.map((item) => item.id), 0) + 1;
 
 export const equipmentRepository = {
+    /**
+     * Reads all equipment records.
+     * Returns a new array containing copies of the stored value.
+     */
     async getAll(): Promise<Equipment[]> {
         return equipment.map((item) => ({
             ...item,
         }));
-    };
+    },
 }
