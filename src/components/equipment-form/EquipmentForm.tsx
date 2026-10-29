@@ -63,82 +63,18 @@ export default function EquipmentForm({
         } = values;
 
 
-        function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+        async function handleSubmit(
+            event: SubmitEvent<HTMLFormElement>,
+        ): Promise<void> {
             // Prevent the browser from reloading the page on submission.
             event.preventDefault();
 
+            if (saving) {
+                return; // Prevent double submission.
+            }
+
             setErrorMessage(''); // Clear any previous error message.
-
-            if (
-                !name.trim() ||
-                !category.trim() ||
-                !description.trim() ||
-                !quantity.trim() ||
-                !availableQuantity.trim() ||
-                !condition.trim() ||
-                !location.trim() ||
-                !picture.trim()
-            ) {
-                setErrorMessage('Please complete all equipment fields.');
-                return;
-            }
-
-            // Allow only letters and whitespace in category and condition, reject numbers and punctuation.
-            // The earlier empty-field check already rejects whitespace-only values.
-            // Already worked with regex in previous terms, but resource is here:
-            // https://www.w3schools.com/jsref/jsref_regexp_test.asp
-            // **IMPORTANT** I used AI to help me construct the regex, but I verified it and tested it myself.
-            const lettersAndSpacesRegex = /^[A-Za-z\s]+$/;
-
-            if (!lettersAndSpacesRegex.test(category.trim())) {
-                setErrorMessage('Category must contain only letters and spaces.');
-                return;
-            }
-
-
-            if (!lettersAndSpacesRegex.test(condition.trim())) {
-                setErrorMessage('Condition must contain only letters and spaces.');
-                return;
-            }
-
-            // Convert the input strings into numbres for the equipment object.
-            const quantityNumber = Number(quantity);
-            const availableQuantityNumber = Number(availableQuantity);
-
-            if (
-                !Number.isInteger(quantityNumber) ||
-                !Number.isInteger(availableQuantityNumber) ||
-                quantityNumber < 0 ||
-                availableQuantityNumber < 0
-            ) {
-                setErrorMessage('Quantities must be whole numbers that are zero or greater.');
-                return;
-            }
-
-            if (availableQuantityNumber > quantityNumber) {
-                setErrorMessage('Available quantity cannot exceed total quantity.');
-                return;
-            }
-
-            // Prepare the validated equipment details.
-            // The parent will generate the ID when adding the catalogue entry, so we don't include it here.
-            const newEquipment: NewEquipment = {
-                name: name.trim(),
-                category: category.trim(),
-                description: description.trim(),
-                quantity: quantityNumber,
-                availableQuantity: availableQuantityNumber,
-                condition: condition.trim(),
-                location: location.trim(),
-                picture: picture.trim(),
-            };
-
-            // Send the equipment details to the callback provided by the parent.
-            onAddEquipment(newEquipment);
-
-            // Reset the form fields with initial field values
-            // after passing the valid equipment to the parent and clears the displayed error message.
-            resetForm();
+            setSaving(true); // Indicate that the form is currently submitting.
 
         }
 
