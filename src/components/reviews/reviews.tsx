@@ -10,6 +10,8 @@ Displays reviews and renders a form for submitting new reviews
 uses reviewService to validate, create, fetch and delete new reviews
 service delegates to reviewRepo to keep business logic separate from render logic
 */ 
+
+// ======== COMPONENT LOGIC =========================================
 function RenderReviews({ equipment}: {equipment: Equipment[]}) {
   // ed's implementation of the custom hook takes in objects w/ form fields, so that's what i declare here
   const reviewForm = useFormInput({title: "", rating: 5, author: "", product: "", body: ""})
@@ -52,6 +54,7 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
     setReviewList(reviewService.getAllReviews())
   }
 
+  // ============== RENDER =============================
   // only major changes were updating the values within the object that the hook takes in, rather than updating
   // individual useState hooks
   return (
