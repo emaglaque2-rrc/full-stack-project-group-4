@@ -42,6 +42,10 @@ export const equipmentRepository = {
         return item ? { ...item } : null;
     },
 
+    /**
+     * Creates an equipment record and assigns its ID.
+     * Expects business validation to have been completed by the service.
+     */
     async create(input: NewEquipment): Promise<Equipment> {
         const item: Equipment = {
             ...input,
