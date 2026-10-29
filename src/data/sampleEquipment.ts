@@ -108,5 +108,16 @@ export const sampleEquipment: Equipment[] = [
         "condition": "Excellent",
         "location": "EDC - P409",
         "picture": "charger.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Mesh Jersey",
+        "category": "Clothing",
+        "description": "Mesh jersey every 2000s kids wore for gym. Old but gold.. and stinky.",
+        "quantity": 67,
+        "availableQuantity": 67,
+        "condition": "Stanks",
+        "location": "NDC - North Gym",
+        "picture": "mesh_jersey.jpg"
     }
 ];
