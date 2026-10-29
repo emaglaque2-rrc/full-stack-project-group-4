@@ -1,6 +1,6 @@
 import type { Review } from "../types/review";
 import * as reviewRepo from "../repositories/reviewRepo"
-import { reviewData } from "../data/reviews";
+
 
 // go thru normal validation rules, return relevant error, or return a blank string if validation passes
 export function validateReview(review: Review): string {
