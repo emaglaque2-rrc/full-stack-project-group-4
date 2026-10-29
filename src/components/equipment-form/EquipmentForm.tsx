@@ -77,6 +77,11 @@ export default function EquipmentForm({
             setSaving(true); // Indicate that the form is currently submitting.
 
             try {
+                // Convert form input strings into the numeric values expected
+                // by NewEquipment. Blank quantities become NaN so they cannot
+                // accidentally become valid zero quantities.
+                //
+                // The service handles text normalization and business validation.
                 const newEquipment: NewEquipment = {
                     name,
                     category,
@@ -92,7 +97,7 @@ export default function EquipmentForm({
             } catch (error) {
 
             } finally {
-                
+
             }
 
         }
