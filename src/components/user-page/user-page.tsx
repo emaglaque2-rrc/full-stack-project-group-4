@@ -1,10 +1,9 @@
 import UserForm from "../user-form/user-form";
 import UserInventory from "../user-inventory/user-inventory";
-import type { UserProps } from "../../types/userProps"
-import { userService } from "../../services/userService"
+import type { UserPageProps } from "../../types/userPageData";
 
 
-function UserPage({ equipment, users, setUsers}:UserProps) {
+function UserPage({ equipment, users, setUsers, onAddUser}:UserPageProps) {
 
 
     return(
@@ -13,7 +12,7 @@ function UserPage({ equipment, users, setUsers}:UserProps) {
                 users={users} 
                 setUsers={setUsers} 
                 equipment={equipment ?? []}
-                onAddUser={(newUser) => userService.createUser(newUser)}
+                onAddUser={onAddUser}
              />
             <UserInventory users={users} setUsers={setUsers} />
         </section>

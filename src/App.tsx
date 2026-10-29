@@ -7,13 +7,12 @@ import { useState, useRef } from 'react';
 import reviews from "./data/reviews.json"
 import equipmentData from "./data/equipment.json"
 import UserPage from './components/user-page/user-page'
-import userData from "./data/user-info.json"
-import type { User } from './types/user';
+import useUsers from './hooks/useUser';
 import type { Review } from './types/review';
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
-const [users, setUsers] = useState<User[]>(userData)
+const { users, setUsers, loading, errorMessage, createUser} = useUsers();
  const [reviewList, setReviewList] = useState<Review[]>(reviews);
 
 // Start the counter above the highest initial equipment ID in the JSON data. 
@@ -59,8 +58,21 @@ function getNextEquipmentId() {
 
           <Route 
                 path="user"
-                element={<UserPage equipment={equipment} users={users} setUsers={setUsers} />} 
-          />
+                element={
+                  loading ? (
+                    <p>Loading users ...</p>
+                  ): errorMessage ? (
+                    <p>{errorMessage}</p>
+                  ):(
+                    <UserPage 
+                      equipment={equipment} 
+                      users={users} 
+                      setUsers={setUsers}
+                      onAddUser={createUser} 
+                    />
+                  )
+                }
+            />
 
           <Route 
                 path="reviews"
