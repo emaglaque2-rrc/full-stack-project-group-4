@@ -1,6 +1,8 @@
 import { userRepository } from "../repositories/userRepo";
 import type { User } from "../types/user";
 
+// The service handles the business logic for user operations. 
+//Receives requests from the hook (useUser) and calls the repository(userRepo) to access or update user data 
 export const userService = {
     //Get all users
     async getUsers(): Promise<User[]> {

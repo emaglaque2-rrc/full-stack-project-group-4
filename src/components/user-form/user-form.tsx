@@ -5,6 +5,9 @@ import type { UserFormProps } from "../../types/userFormData";
 import { useFormInput } from "../../hooks/useFormInput";
 
 function UserForm({ users, setUsers, equipment, onAddUser }: UserFormProps) {
+
+    // Reuses the shared form hook to manage input values, error messages, and resetting 
+    //the form instead of managing each field separately.
     const { values, setFieldValue, errorMessage, setErrorMessage, resetForm } = useFormInput({
         firstName: "",
         lastName: "",

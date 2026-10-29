@@ -1,6 +1,8 @@
 import userData from '../data/user-info.json'
 import type { User } from '../types/user'
 
+// This manages user data using the JSON test data.
+//The service calls these methods to retrieve or update user records
 let users: User[] = userData.map((user) => ({
     ...user,
     rentals: user.rentals.map((rental) => ({

@@ -12,6 +12,9 @@ import type { Review } from './types/review';
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
+
+// Uses the custom hook to mange uses and connect the UI to the service.
+//The hook loads user data and provides functions for creating, updating users and removing rentals.
 const { users, setUsers, loading, errorMessage, createUser, updateUser,removeRental} = useUsers();
  const [reviewList, setReviewList] = useState<Review[]>(reviews);
 
@@ -56,6 +59,7 @@ function getNextEquipmentId() {
                 />} 
           />
 
+          {/* Displays the user page after the user data has loaded.*/}
           <Route 
                 path="user"
                 element={
