@@ -125,4 +125,30 @@ export const equipmentService = {
 
         return equipmentRepository.create(normalizedInput);
     },
+
+    /**
+     * Replaces all editable fields of an existing record.
+     * Rejects invalid input or an ID that does not exist. ****THIS WILL BE IMPLEMENTED NEXT SPRINT****
+     */
+    async updateEquipment(
+        id: number,
+        input: NewEquipment,
+    ): Promise<Equipment> {
+        validateEquipmentId(id);
+
+        const normalizedInput = normalizeEquipment(input);
+
+        validateEquipment(normalizedInput);
+
+        const updatedEquipment = await equipmentRepository.update(
+            id,
+            normalizedInput,
+        );
+
+        if (updatedEquipment === null) {
+            throw new Error('Equipment not found.');
+        }
+
+        return updatedEquipment;
+    }
 }
