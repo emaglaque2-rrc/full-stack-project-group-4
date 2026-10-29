@@ -13,3 +13,6 @@ import type { Equipment, NewEquipment } from '../types/equipment';
 let equipment: Equipment[] = equipmentData.map((item) => ({
     ...item,
 }));
+
+let nextId = 
+    Math.max(...equipment.map((item) => item.id), 0) + 1;
