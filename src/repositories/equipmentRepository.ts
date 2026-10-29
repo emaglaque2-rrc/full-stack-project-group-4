@@ -31,4 +31,10 @@ export const equipmentRepository = {
             ...item,
         }));
     },
+
+    async getById(id: number): Promise<Equipment | null> {
+        const item = equipment.find(
+            (item) => item.id === id);
+        return item ? { ...item } : null;
+    },
 }
