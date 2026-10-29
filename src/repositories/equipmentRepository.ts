@@ -1,6 +1,15 @@
 import equipmentData from '../data/equipment.json';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
+/**
+ * Working equipment collection for the mock repo.
+ * 
+ * Copy the initial records so repo operations do not modify the imported
+ * sample objects directly.
+ * 
+ * This collection is shared by callers of this module during the current application session.
+ * It resets when the application reloads.
+ */
 let equipment: Equipment[] = equipmentData.map((item) => ({
     ...item,
 }));
