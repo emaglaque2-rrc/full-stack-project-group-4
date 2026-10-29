@@ -62,6 +62,18 @@ export const equipmentRepository = {
         input: NewEquipment,
     ): Promise<Equipment | null> {
         const index = equipment.findIndex((item) => item.id === id);
-        
-    }
+
+        if (index === -1) {
+            return null;
+        }
+
+        const updatedItem: Equipment = {
+            ...input,
+            id: equipment[index].id,
+        };
+
+        equipment = equipment.map((item) => item.id === id ? updatedItem : item);
+
+        return { ...updatedItem };
+    }, 
 }
