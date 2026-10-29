@@ -19,6 +19,15 @@ function normalizeEquipment(input: NewEquipment): NewEquipment {
     };
 }
 
+/**
+ * Checks equipment business rules.
+ * 
+ * Quantities must already be numbers. The form converts its text inputs before
+ * passinng them to this function/service.
+ * 
+ * Collects applicable errors and throws one combined message. This function
+ * does not manage React state or display errors.
+ */
 function validateEquipment(input: NewEquipment): void {
     const errors: string[] = [];
 
