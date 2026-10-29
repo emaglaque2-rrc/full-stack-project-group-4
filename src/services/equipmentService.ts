@@ -1,6 +1,12 @@
 import { equipmentRepository } from '../repositories/equipmentRepository';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
+/**
+ * Removes surrounding whitespace from equipment text fields.
+ * 
+ * Returns a nnew object so the caller's input is not modified.
+ * Both creation and updates use this same normalization.
+ */
 function normalizeEquipment(input: NewEquipment): NewEquipment {
     return {
         ...input,
