@@ -1,5 +1,6 @@
 import type { Review } from "../types/review";
 import * as reviewRepo from "../repositories/reviewRepo"
+import { reviewData } from "../data/reviews";
 
 // go thru normal validation rules, return relevant error, or return a blank string if validation passes
 export function validateReview(review: Review): string {
@@ -8,15 +9,15 @@ export function validateReview(review: Review): string {
     }
 
     if (review.title.length > 50){
-        return "Title cannot exceed 50 characters"
+        return "Title is longer than the character limit"
     }
 
     if (review.author.length > 50) {
-        return "Author name cannot exceed 50 characters"
+        return "Author name is longer than the character limit"
     }
 
     if (review.body.length > 300) {
-        return "Review body cannot exceed 300 characters"
+        return "Review body is longer than character limit"
     }
     return ""
   }
