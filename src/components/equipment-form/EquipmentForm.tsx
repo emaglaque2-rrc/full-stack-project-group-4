@@ -46,6 +46,8 @@ export default function EquipmentForm({
             picture: '',
         });
 
+        const [saving, setSaving] = useState<boolean>(false); // Tracks whether the form is currently submitting.
+
         // REad the current field values using the same names as before.
         // Just destructuring it to let the existing validation and object construction 
         // stay readable without changing the field names. The values object is still available for other uses.
