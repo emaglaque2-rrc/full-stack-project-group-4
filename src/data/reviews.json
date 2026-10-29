@@ -35,6 +35,60 @@
         "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
         "rating": 1,
         "datePosted": "2026-12-03"
+    },
+        {
+        "id": 5,
+        "title": "Sample",
+        "author": "Test Johnson",
+        "product": "Digicamera",
+        "body": "Hi",
+        "rating": 8,
+        "datePosted": "2025-11-02"
+    },
+        {
+        "id": 6,
+        "title": "I do like tripods",
+        "author": "tripodlover999",
+        "product": "tripod",
+        "body": "I used it as a coatrack",
+        "rating": 10,
+        "datePosted": "2026-09-01"
+    },
+        {
+        "id": 7,
+        "title": "Test",
+        "author": "Test",
+        "product": "Green Screen",
+        "body": "TestTestTestTestTestTestTest",
+        "rating": 9,
+        "datePosted": "2026-05-22"
+    },
+        {
+        "id": 8,
+        "title": "It was ok",
+        "author": "Non-descript Dan",
+        "product": "Lighting kit",
+        "body": "No further comments, your honor",
+        "rating": 1,
+        "datePosted": "2026-02-09"
+    },
+        {
+        "id": 9,
+        "title": "Green Screen SUCKED!",
+        "author": "Robin Dabank",
+        "product": "Green Screen",
+        "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
+        "rating": 1,
+        "datePosted": "2026-12-03"
+    },
+        {
+        "id": 10,
+        "title": "Green Screen SUCKED!",
+        "author": "Robin Dabank",
+        "product": "Green Screen",
+        "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
+        "rating": 1,
+        "datePosted": "2026-12-03"
     }
 
 ]
