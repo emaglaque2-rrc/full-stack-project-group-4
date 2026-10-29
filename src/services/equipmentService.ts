@@ -89,3 +89,9 @@ function validateEquipmentId(id: number): void {
         throw new Error('Invalid equipment ID. It must be a positive integer.');
     }
 }
+
+export const equipmentService = {
+    async getEquipment(): Promise<Equipment[]> {
+        return equipmentRepository.getAll();
+    }, 
+}
