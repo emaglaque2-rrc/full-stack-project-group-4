@@ -12,7 +12,7 @@ import type { Review } from './types/review';
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
-const { users, setUsers, loading, errorMessage, createUser} = useUsers();
+const { users, setUsers, loading, errorMessage, createUser, updateUser,removeRental} = useUsers();
  const [reviewList, setReviewList] = useState<Review[]>(reviews);
 
 // Start the counter above the highest initial equipment ID in the JSON data. 
@@ -68,7 +68,9 @@ function getNextEquipmentId() {
                       equipment={equipment} 
                       users={users} 
                       setUsers={setUsers}
-                      onAddUser={createUser} 
+                      onAddUser={createUser}
+                      updateUser={updateUser}
+                      removeRental={removeRental} 
                     />
                   )
                 }

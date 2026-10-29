@@ -35,14 +35,35 @@ function useUsers() {
         return updatedUsers;
     }
 
+    async function updateUser(updatedUser: User): Promise<User[]> {
+        const updatedUsers = await userService.updateUser(updatedUser);
+        setUsers(updatedUsers);
+        return updatedUsers;
+    }
+
+    async function removeRental(
+        userId: User["userId"],
+        equipmentId: number
+    ): Promise<User[]> {
+        const updatedUsers = await userService.deleteRental(
+            userId,
+            equipmentId
+        );
+        setUsers(updatedUsers);
+        return updatedUsers;
+    }
+
     return {
         users,
         setUsers,
         loading,
         errorMessage,
         createUser,
-        reloadUsers: loadUsers
-    }
+        updateUser,
+        removeRental,
+        reloadUsers: loadUsers,
+    };
 }
+        
 
 export default useUsers;

@@ -3,7 +3,7 @@ import UserInventory from "../user-inventory/user-inventory";
 import type { UserPageProps } from "../../types/userPageData";
 
 
-function UserPage({ equipment, users, setUsers, onAddUser}:UserPageProps) {
+function UserPage({ equipment, users, setUsers, onAddUser,updateUser, removeRental}:UserPageProps) {
 
 
     return(
@@ -14,7 +14,7 @@ function UserPage({ equipment, users, setUsers, onAddUser}:UserPageProps) {
                 equipment={equipment ?? []}
                 onAddUser={onAddUser}
              />
-            <UserInventory users={users} setUsers={setUsers} />
+            <UserInventory users={users} setUsers={setUsers} updateUser={updateUser} removeRental={removeRental} />
         </section>
     );
 }

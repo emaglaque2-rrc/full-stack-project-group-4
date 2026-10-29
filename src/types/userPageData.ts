@@ -6,4 +6,9 @@ export interface UserPageProps {
     setUsers: React.Dispatch<React.SetStateAction<User[]>>;
     equipment?: Equipment[];
     onAddUser: (newUser: User) => Promise<User[]>;
+    updateUser: (updatedUser: User) => Promise<User[]>;
+    removeRental: (
+        userId: User["userId"],
+        equipmentId: number
+    ) => Promise<User[]>;
 }
