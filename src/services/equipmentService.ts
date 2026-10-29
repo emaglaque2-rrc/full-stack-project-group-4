@@ -165,4 +165,4 @@ export const equipmentService = {
             throw new Error('Equipment not found.');
         }
     },
-}
+};
