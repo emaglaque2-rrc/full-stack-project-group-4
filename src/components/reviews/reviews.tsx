@@ -86,6 +86,7 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
               id="review-title"
               placeholder="Review Title"
               value={reviewForm.values.title}
+              maxLength={50}
               onChange={(e) => reviewForm.setFieldValue("title", e.target.value)}
             />
 
@@ -110,6 +111,7 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
               id="review-author"
               placeholder="Name"
               value={reviewForm.values.author}
+              maxLength={50}
               onChange={(e) => reviewForm.setFieldValue("author", e.target.value)}
             />
 
@@ -136,6 +138,7 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
               id="review-body"
               placeholder="What do you think..."
               value={reviewForm.values.body}
+              maxLength={300}
               onChange={(e) => reviewForm.setFieldValue("body", e.target.value)}
             />
 
