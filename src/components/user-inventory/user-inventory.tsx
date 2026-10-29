@@ -5,14 +5,18 @@ import { useState } from 'react';
 import { useFormInput } from '../../hooks/useFormInput';
 
 
-function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
+function UserInventory({ users,equipment,updateUser, removeRental }: UserInventoryProps) {
 
+    // stores the user that is being currently edited
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
+    // manages the form values and the validation messages
     const { values, setFieldValue, errorMessage, setErrorMessage,resetForm} = useFormInput({
         firstName: "",
         lastName:"",
         userEmail: "",
+        selectedEquipment: "",
+        dateRented: "",
     })
 
     //Remove a rental through the hook and service
@@ -27,6 +31,7 @@ function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
         }
     }
 
+    // loads the selected user's details into the edit form
     async function handleEdit(user: User) {
         setEditingUser(user);
         setFieldValue("firstName", user.firstName);
@@ -35,7 +40,8 @@ function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
         setErrorMessage("");
     }
 
-    async function handleSave(event: React.FormEvent<HTMLFormElement>) {
+    // Validates the form and saves the updated user details
+    async function handleSave(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
         setErrorMessage("");
 
@@ -56,6 +62,7 @@ function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
             return;
         }
 
+        // creates an updated user while keeping their existing rentals
         const updatedUser: User = {
             ...editingUser,
             firstName: values.firstName.trim(),
@@ -73,6 +80,55 @@ function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
             );
         }
     }
+
+    // adds another new rental to the selected  user's rental list
+    async function handleAddRental() {
+       setErrorMessage("");
+
+        if (!editingUser) return;
+
+        if (!values.selectedEquipment || !values.dateRented) {
+            setErrorMessage("Please select equipment and a rental date.");
+            return;
+        }
+
+        const equipmentId = Number(values.selectedEquipment);
+
+        // Prevents adding the same equipment twice to this user's rentals.
+        const alreadyRented = editingUser.rentals.some(
+            (rental) => rental.equipmentId === equipmentId
+        );
+
+        if (alreadyRented) {
+            setErrorMessage("This equipment is already listed for this user.");
+            return;
+        }
+
+        const newRental = {
+            equipmentId: equipmentId,
+            dateRented: values.dateRented,
+            dateReturned: "",
+            status: "In Use",
+        };
+
+        const updatedUser: User = {
+            ...editingUser,
+            rentals: [...editingUser.rentals, newRental],
+        };
+
+        try {
+            await updateUser(updatedUser);
+            setEditingUser(updatedUser);
+            setFieldValue("selectedEquipment", "");
+            setFieldValue("dateRented", "");
+            setErrorMessage("");
+        } catch (error) {
+            setErrorMessage(
+                error instanceof Error ? error.message : "Unable to add rental."
+            );
+        }
+    } 
+
 
     return (
         <section className="user-inventory">
@@ -111,6 +167,41 @@ function UserInventory({ users,updateUser, removeRental }: UserInventoryProps) {
                         }
                         required
                     />
+
+                    <h3>Add Rental</h3>
+
+                    <label htmlFor="selectedEquipment">Equipment:</label>
+                    <select
+                        id="selectedEquipment"
+                        value={values.selectedEquipment}
+                        onChange={(event) =>
+                            setFieldValue("selectedEquipment", event.target.value)
+                        }
+                        required
+                    >
+                        <option value="">Select equipment</option>
+
+                        {equipment.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name} (ID: {item.id})
+                            </option>
+                        ))}
+                    </select>
+
+                    <label htmlFor="dateRented">Date Rented:</label>
+                    <input
+                        id="dateRented"
+                        type="date"
+                        value={values.dateRented}
+                        onChange={(event) =>
+                            setFieldValue("dateRented", event.target.value)
+                        }
+                        required
+                    />
+
+                    <button type="button" onClick={handleAddRental}>
+                        Add Rental
+                    </button>
 
                     {errorMessage && <p role="alert">{errorMessage}</p>}
 

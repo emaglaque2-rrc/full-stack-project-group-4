@@ -14,7 +14,7 @@ function UserPage({ equipment, users, setUsers, onAddUser,updateUser, removeRent
                 equipment={equipment ?? []}
                 onAddUser={onAddUser}
              />
-            <UserInventory users={users} setUsers={setUsers} updateUser={updateUser} removeRental={removeRental} />
+            <UserInventory users={users}  equipment={equipment ?? []} updateUser={updateUser} removeRental={removeRental} />
         </section>
     );
 }
