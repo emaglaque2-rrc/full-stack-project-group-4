@@ -53,7 +53,8 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
     setReviewList(reviewService.getAllReviews())
   }
 
-  // only major changes were updating the values within the object that the hook takes in
+  // only major changes were updating the values within the object that the hook takes in, rather than updating
+  // individual useState hooks
   return (
     <>
       <section className="review-container">
@@ -147,4 +148,25 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
   );
 }
 
+// This documentation is really for myself, but can still be useful
+/*
+* THE WHOLE HOG: 
+* The page is rendered, along with the review form.
+* User-input data is then retrieved by the custom hook, via an on-change event,
+* that actively updates the hooks object.
+* Upon submission, a review object is created with the relevant data from the hook.
+* After this, we call the addReview function, which implicitly calls validation as well.
+* If validation returns an error, so will addReview. We assign this error to [const error]
+* and if an error IS returned, then we call the setErrorMessage function of the custom hook, 
+* setting our error message.
+* Otherwise, we call the placeholder hooks setReviewList, with the value as the return of 
+* reviewService.GetAllReviews, which will return the newly updated array, and re-render the page.
+* After this, we reset the input form.
+* 
+* If a review deletion is attempted, we call the removeReview function, which delegates the operation
+* to the reviewServices delete review function, and then sets the updated review list to re-render the page.
+* 
+* 
+* TL;DR: Hook -> Service -> Repository
+*/
 export default RenderReviews;
