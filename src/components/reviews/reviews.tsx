@@ -1,77 +1,59 @@
 import type { Review } from "../../types/review";
+import { useFormInput } from "../../hooks/useFormInput";
 import { useState } from "react";
-import type { RenderReviewsProps } from "../../types/renderReviewProps";
+import * as reviewService from "../../services/reviewService"
 import "./reviews.css";
+import type { Equipment } from "../../types/equipment";
 
-function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsProps) {
-  const [title, setTitle] = useState<string>("");
-  const [rating, setRating] = useState<number>(5);
-  const [author, setAuthor] = useState<string>("");
-  const [product, setProduct] = useState<string>("");
-  const [body, setBody] = useState<string>("");
-
-  const [validationError, setValidationError] = useState("");
-
+/* 
+Displays reviews and renders a form for submitting new reviews 
+uses reviewService to validate, create, fetch and delete new reviews
+service delegates to reviewRepo to keep business logic separate from render logic
+*/ 
+function RenderReviews({ equipment}: {equipment: Equipment[]}) {
+  // ed's implementation of the custom hook takes in objects w/ form fields, so that's what i declare here
+  const reviewForm = useFormInput({title: "", rating: 5, author: "", product: "", body: ""})
+ 
+  const [reviewList, setReviewList] = useState<Review[]>(() => reviewService.getAllReviews())
+  
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    setValidationError("")
     let currentDate = new Date().toISOString().split("T")[0];
-
-    if (validateReview()) {
+    // create new review object using values grabbed from custom hook
       const review: Review = {
         id: Date.now(),
-        title: title,
-        rating: rating,
-        author: author,
-        product: product,
-        body: body,
+        title: reviewForm.values.title,
+        rating: reviewForm.values.rating,
+        author: reviewForm.values.author,
+        product: reviewForm.values.product,
+        body: reviewForm.values.body,
         datePosted: currentDate,
       };
-      addReview(review);
+
+      // declare error as the return value of addReview (validateReview)
+      // if there is an error, set the error message to that error, else call getAllReviews w/ new review
+      const error = reviewService.addReview(review)
+      if (error) {
+        reviewForm.setErrorMessage(error)
+        return
     }
+
+    // call setReviewList w/ getAllReviews from the service & reset form
+    setReviewList(reviewService.getAllReviews())
+    reviewForm.resetForm()
+    
   }
 
-  function validateReview(): boolean {
-    if (!title.trim() || !author.trim() || !body.trim() || !product.trim()) {
-      setValidationError("Please fill out all fields.");
-      return false;
-    }
-
-    if (title.length > 50){
-        setValidationError(`Title must not exceed 50 characters. (${title.length})`)
-        return false
-    }
-
-    if (author.length > 50) {
-        setValidationError(`Author name must not exceed 50 characters. (${author.length})`)
-    }
-
-    if (body.length > 300) {
-        setValidationError(`Review body must not exceed 300 characters. (${body.length})`)
-        return false
-    }
-    return true
+  // call removeReview, passing the relevant review in
+  // call deleteReview with the ID of the review, delete review 
+  // call setReviewList with the updated review array
+  function removeReview(review: Review) {
+    reviewService.deleteReview(review.id)
+    setReviewList(reviewService.getAllReviews())
   }
 
-  function addReview(review: Review) {
-    setReviewList((reviewList) => {
-      return [...reviewList, review];
-    });
-  }
-
-
-  // Courtesy of https://stackoverflow.com/questions/63948123/remove-item-from-an-array-usestate-hook
-  function removeReview(review: Review){
-    const idToRemove = review.id // Grab ID of clicked review
-    const index = reviewList.findIndex(({id}) => id === idToRemove) // Find idToRemove by destructuring each review and comparing ID. if true, return index
-    if(index !== -1) { // findIndex returns -1 if it can't find the index
-      setReviewList([
-        ...reviewList.slice(0, index),
-        ...reviewList.slice(index + 1)
-      ]) // Combine slices so that everything BEFORE and AFTER the indexTBD is included, with the index to be deleted being removed. Then, return both slices as the new array.
-    }
-  }
-
+  // only major changes were updating the values within the object that the hook takes in, rather than updating
+  // individual useState hooks
   return (
     <>
       <section className="review-container">
@@ -95,38 +77,42 @@ function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsPro
         <form className="review-form" id="reviewForm" onSubmit={handleSubmit}>
           <section className="review-items">
             <h2>Leave a Review:</h2>
-            <p id="validationError">{validationError}</p>
+            <p id="validationError">{reviewForm.errorMessage}</p>
             {/* title */}
-            <label htmlFor="title-field">Title ({title.length}/50)</label>
+            <label htmlFor="title-field">Title ({reviewForm.values.title.length}/50)</label>
             <input
               type="text"
               name="title"
               id="review-title"
               placeholder="Review Title"
-              onChange={(e) => setTitle(e.target.value)}
+              value={reviewForm.values.title}
+              maxLength={50}
+              onChange={(e) => reviewForm.setFieldValue("title", e.target.value)}
             />
 
             {/* rating */}
-            <label htmlFor="rating-slider">Rating: {rating}/10</label>
+            <label htmlFor="rating-slider">Rating: {reviewForm.values.rating}/10</label>
             <input
               type="range"
               name="rating"
               id="rating-slider"
-              value={rating}
+              value={reviewForm.values.rating}
               min={1}
               max={10}
               step={1}
-              onChange={(e) => setRating(Number(e.target.value))}
+              onChange={(e) => reviewForm.setFieldValue("rating", Number(e.target.value))}
             />
 
             {/* author */}
-            <label htmlFor="author-field">Author ({author.length}/50)</label>
+            <label htmlFor="author-field">Author ({reviewForm.values.author.length}/50)</label>
             <input
               type="text"
               name="author"
               id="review-author"
               placeholder="Name"
-              onChange={(e) => setAuthor(e.target.value)}
+              value={reviewForm.values.author}
+              maxLength={50}
+              onChange={(e) => reviewForm.setFieldValue("author", e.target.value)}
             />
 
             {/* product */}
@@ -134,7 +120,8 @@ function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsPro
             <select
               name="product"
               id=""
-              onChange={(e) => setProduct(e.target.value)}
+              value={reviewForm.values.product}
+              onChange={(e) => reviewForm.setFieldValue("product", e.target.value)}
             >
               <option value="">Select Equipment</option>
               {equipment.map((equip) => (
@@ -145,12 +132,14 @@ function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsPro
             </select>
 
             {/* body */}
-            <label htmlFor="review-body">Body ({body.length}/300)</label>
+            <label htmlFor="review-body">Body ({reviewForm.values.body.length}/300)</label>
             <textarea
               name="body"
               id="review-body"
               placeholder="What do you think..."
-              onChange={(e) => setBody(e.target.value)}
+              value={reviewForm.values.body}
+              maxLength={300}
+              onChange={(e) => reviewForm.setFieldValue("body", e.target.value)}
             />
 
             <button type="submit">Submit</button>
@@ -161,4 +150,25 @@ function RenderReviews({ equipment, reviewList, setReviewList}: RenderReviewsPro
   );
 }
 
+// This documentation is really for myself, but can still be useful
+/*
+* THE WHOLE HOG: 
+* The page is rendered, along with the review form.
+* User-input data is then retrieved by the custom hook, via an on-change event,
+* that actively updates the hooks object.
+* Upon submission, a review object is created with the relevant data from the hook.
+* After this, we call the addReview function, which implicitly calls validation as well.
+* If validation returns an error, so will addReview. We assign this error to [const error]
+* and if an error IS returned, then we call the setErrorMessage function of the custom hook, 
+* setting our error message.
+* Otherwise, we call the useState hooks setReviewList, with the value as the return of 
+* reviewService.GetAllReviews, which will return the newly updated array, and re-render the page.
+* After this, we reset the input form.
+* 
+* If a review deletion is attempted, we call the removeReview function, which delegates the operation
+* to the reviewServices delete review function, and then sets the updated review list to re-render the page.
+* 
+* 
+* TL;DR: Hook -> Service -> Repository
+*/
 export default RenderReviews;

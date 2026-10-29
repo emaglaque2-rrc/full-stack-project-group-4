@@ -4,11 +4,10 @@ import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import RenderReviews from './components/reviews/reviews';
 import { useState, useRef } from 'react';
-import reviews from "./data/reviews.json"
 import equipmentData from "./data/equipment.json"
 import UserPage from './components/user-page/user-page'
 import useUsers from './hooks/useUser';
-import type { Review } from './types/review';
+
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
@@ -16,7 +15,7 @@ const [equipment, setEquipment] = useState(equipmentData)
 // Uses the custom hook to mange uses and connect the UI to the service.
 //The hook loads user data and provides functions for creating, updating users and removing rentals.
 const { users, setUsers, loading, errorMessage, createUser, updateUser,removeRental} = useUsers();
- const [reviewList, setReviewList] = useState<Review[]>(reviews);
+
 
 // Start the counter above the highest initial equipment ID in the JSON data. 
 // This ensures that new equipment entries will have unique IDs.
@@ -82,7 +81,7 @@ function getNextEquipmentId() {
 
           <Route 
                 path="reviews"
-                element={<RenderReviews equipment={equipment} reviewList={reviewList} setReviewList={setReviewList} />}
+                element={<RenderReviews equipment={equipment} />}
           />
 
         </Route>
