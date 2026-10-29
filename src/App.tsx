@@ -4,15 +4,19 @@ import { Layout } from './components/layout/Layout';
 import EquipmentInventory from './components/equipment-inventory/EquipmentInventory';
 import RenderReviews from './components/reviews/reviews';
 import { useState, useRef } from 'react';
+import reviews from "./data/reviews.json"
 import equipmentData from "./data/equipment.json"
 import UserPage from './components/user-page/user-page'
-import userData from "./data/user-info.json"
-import type { User } from './types/user';
+import useUsers from './hooks/useUser';
+import type { Review } from './types/review';
 
 function App() {
 const [equipment, setEquipment] = useState(equipmentData)
-const [users, setUsers] = useState<User[]>(userData)
 
+// Uses the custom hook to mange uses and connect the UI to the service.
+//The hook loads user data and provides functions for creating, updating users and removing rentals.
+const { users, setUsers, loading, errorMessage, createUser, updateUser,removeRental} = useUsers();
+ const [reviewList, setReviewList] = useState<Review[]>(reviews);
 
 // Start the counter above the highest initial equipment ID in the JSON data. 
 // This ensures that new equipment entries will have unique IDs.
@@ -55,14 +59,30 @@ function getNextEquipmentId() {
                 />} 
           />
 
+          {/* Displays the user page after the user data has loaded.*/}
           <Route 
                 path="user"
-                element={<UserPage equipment={equipment} users={users} setUsers={setUsers} />} 
-          />
+                element={
+                  loading ? (
+                    <p>Loading users ...</p>
+                  ): errorMessage ? (
+                    <p>{errorMessage}</p>
+                  ):(
+                    <UserPage 
+                      equipment={equipment} 
+                      users={users} 
+                      setUsers={setUsers}
+                      onAddUser={createUser}
+                      updateUser={updateUser}
+                      removeRental={removeRental} 
+                    />
+                  )
+                }
+            />
 
           <Route 
                 path="reviews"
-                element={<RenderReviews equipment={equipment} />}
+                element={<RenderReviews equipment={equipment} reviewList={reviewList} setReviewList={setReviewList} />}
           />
 
         </Route>
