@@ -57,6 +57,15 @@ export const equipmentRepository = {
         return { ...item };
     },
 
+    /**
+     * Updates an existing equipment record.
+     * 
+     * Replaced all editable fields of an existing equipment record. 
+     * The record keeps its existing ID.
+     * 
+     * This is a full update: input must contain every NewEquipment field.
+     * Returns the new updated record, or null when the ID does not exist.
+     */
     async update(
         id: number,
         input: NewEquipment,
