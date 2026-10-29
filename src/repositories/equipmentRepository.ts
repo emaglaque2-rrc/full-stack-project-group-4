@@ -85,4 +85,12 @@ export const equipmentRepository = {
 
         return { ...updatedItem };
     }, 
+
+    async delete(id: number): Promise<boolean> {
+        const originalLength = equipment.length;
+
+        equipment = equipment.filter((item) => item.id !== id);
+
+        return equipment.length < originalLength;
+    }
 }
