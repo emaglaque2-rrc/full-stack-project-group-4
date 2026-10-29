@@ -113,4 +113,16 @@ export const equipmentService = {
         validateEquipmentId(id);
         return equipmentRepository.getById(id);
     },
+
+    /**
+     * Normalizes and validates equipment before creating it.
+     * The repository assigns the ID.
+     */
+    async addEquipment(input: NewEquipment): Promise<Equipment> {
+        const normalizedInput = normalizeEquipment(input);
+
+        validateEquipment(normalizedInput);
+
+        return equipmentRepository.create(normalizedInput);
+    },
 }
