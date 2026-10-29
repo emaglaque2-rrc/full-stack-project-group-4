@@ -1,4 +1,4 @@
-import equipmentData from '../data/equipment.json';
+import { sampleEquipment } from '../data/sampleEquipment';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
 /**
@@ -17,7 +17,7 @@ import type { Equipment, NewEquipment } from '../types/equipment';
  * Returned records are shallow copies. This is sufficient for the current
  * Equipment type because its fields contain only primitive values.
  */
-let equipment: Equipment[] = equipmentData.map((item) => ({
+let equipment: Equipment[] = sampleEquipment.map((item) => ({
     ...item,
 }));
 
