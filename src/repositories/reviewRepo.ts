@@ -7,7 +7,7 @@ import reviewData from "../data/reviews.json"
 let reviews: Review[] = [...reviewData]
 
 // array spread & return all reviews
-export async function getAllReviews(): Review[]{
+export function getAllReviews(): Review[]{
   return [...reviews]
 }
 
@@ -22,7 +22,7 @@ export function createReview(review: Review) {
   return review
 }
 
-// call w/ id
+// call w/ id, use .filter to retrieve reviews, excluding review to be deleted
 export function removeReview(id: number) {
   const reviewExists = reviews.some((review) => review.id === id)
 
