@@ -39,4 +39,13 @@ export function useEquipment() {
         };
     }, []);
 
+    async function addEquipment(input: NewEquipment): Promise<void> {
+        const createdEquipment = 
+            await equipmentService.addEquipment(input);
+
+        setEquipment((currentEquipment) => [
+            ...currentEquipment,
+            createdEquipment,
+        ]);
+    }
 }
