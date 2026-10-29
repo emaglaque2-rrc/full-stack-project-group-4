@@ -101,9 +101,14 @@ export default function EquipmentForm({
                 // Only clear the form after successful creation.
                 resetForm();
             } catch (error) {
-
+                setErrorMessage(
+                    error instanceof Error
+                        ? error.message
+                        : "Unable to add equipment."
+                );
             } finally {
-
+                // Allow another submission after either success or failure. The form is cleared only on success.
+                setSaving(false);
             }
 
         }
