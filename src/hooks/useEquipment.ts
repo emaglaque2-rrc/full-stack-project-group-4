@@ -48,4 +48,25 @@ export function useEquipment() {
             createdEquipment,
         ]);
     }
+
+    async function removeEquipment(id: number): Promise<boolean> {
+        setErrorMessage('');
+
+        try {
+            await equipmentService.removeEquipment(id);
+
+            setEquipment((currentEquipment) =>
+                currentEquipment.filter((item) => item.id !== id)
+            );
+            return true;
+        } catch (error) {
+            setErrorMessage(
+                error instanceof Error
+                ? error.message
+                : "Unable to remove equipment."
+            );
+
+            return false;
+        }
+    }
 }
