@@ -150,5 +150,19 @@ export const equipmentService = {
         }
 
         return updatedEquipment;
-    }
+    },
+
+    /**
+     * Removes equipment after validating its ID.
+     * Rejects an ID that does not exist.
+     */
+    async removeEquipment(id: number): Promise<void> {
+        validateEquipmentId(id);
+
+        const removed = await equipmentRepository.delete(id);
+
+        if (!removed) {
+            throw new Error('Equipment not found.');
+        }
+    },
 }
