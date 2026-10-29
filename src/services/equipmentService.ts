@@ -97,11 +97,20 @@ function validateEquipmentId(id: number): void {
  * React state and the display of feedback belong to the UI layer.
  */
 export const equipmentService = {
-    
+
     /**
      * Retrieves all equipment through the repository.
      */
     async getEquipment(): Promise<Equipment[]> {
         return equipmentRepository.getAll();
     }, 
+
+    /**
+     * Retrieves one record after validating its ID.
+     * Returns null if no equipment has that ID. Throws an error if the ID is invalid.
+     */
+    async getEquipmentById(id: number): Promise<Equipment | null> {
+        validateEquipmentId(id);
+        return equipmentRepository.getById(id);
+    },
 }
