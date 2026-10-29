@@ -94,6 +94,12 @@ export default function EquipmentForm({
                     location,
                     picture,
                 };
+
+                // Wait for the hook, service, and repository operation to succeed.
+                await onAddEquipment(newEquipment);
+
+                // Only clear the form after successful creation.
+                resetForm();
             } catch (error) {
 
             } finally {
