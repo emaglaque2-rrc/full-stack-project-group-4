@@ -22,86 +22,51 @@ function EquipmentInventory({
         })
         : equipment;
 
-    // Remove a catalogue entry from the equipment inventory. This function
-    // is passed down to the EquipmentItem component as a prop, so that the
-    // EquipmentItem component can call this function when the user clicks
-    // the "Remove" button for a specific equipment item.
-    // It uses the unique id of the equipment item.
-    function handleRemoveEquipment(equipmentId: number) {
-            // The shared props interface (equipmentProps) makes setEquipment optional.
-            // Stop here if this component wasn't given a setter.
-            if (!setEquipment) {
-                console.error('setEquipment function is not provided');
-                return;
-            }
-            
-            // Calculate the updated catalogue from the previous state.
-            // React supplies that state as currentEquipment, which is an array of Equipment objects.
-            setEquipment((currentEquipment) => {
-
-                // Create a new array containing every item except
-                // the one whose ID matches equipmentId.
-                return currentEquipment.filter((item) => {
-                    return item.id !== equipmentId;
-                })
-            })
-        }
-
-    // Receive validated form details and add equipment to the shared catalogue.
-    function handleAddEquipment(newEquipment: NewEquipment) {
-        // Both props are optional (from the interface), but adding equipment
-        // requires both the setter and the ID generator. Stop before
-        // allocating an ID if either function is missing.
-        if (!setEquipment || !getNextEquipmentId) {
-            return; // Stop if the setter or ID generator is not provided.
-        }
-
-        // Copy the form details and assign the next sequential ID.
-        // TypeScript infers the completed object's type as Equipment because it has all the required properties.
-        const equipmentToAdd = {
-            ...newEquipment,
-            id: getNextEquipmentId() // Allocate a unique ID for the new equipment entry.
-        };
-
-        // Update the shared catalogue state with the new entry by appending it to the current array of equipment.
-        // React supplies the current state as currentEquipment, which is an array of Equipment objects.
-        setEquipment((currentEquipment) => {
-            return [...currentEquipment, equipmentToAdd];
-        })
-    }
-
     return(
         <section className="equipment-inventory">
             <h2>Equipment Inventory</h2>
 
-            {/*Show the form when this page can allocate IDs and update the catalogue. */}
-            {setEquipment && getNextEquipmentId && (
-                <EquipmentForm onAddEquipment={handleAddEquipment} />
+            {errorMessage && (
+                <p role="alert" className="error-message">
+                    {errorMessage}
+                </p>
             )}
 
-            <EquipmentSearch
-                searchValue={searchValue}
-                handleSearchChange={setSearchValue}
-            />
-            
-            { /* Note: Remember the DepartmentSection component from Lab 1.2? We don't have a component similar to it here
-            because our Equipment data is currently only one level, no nested entity like Equipment Categories > Equipment Items yet. 
-            but we can create a separate component (EquipmentItem) for each equipment item to be rendered. */ }
-                
-            {filteredEquipment.length === 0 ? (
-                <p> No equipment found.</p>
+            {loading ? (
+                <p role="status">Loading equipment...</p>
             ) : (
-            <div className="equipment-inventory__grid"> 
-                {filteredEquipment.map((equipment) => (
-                    <EquipmentItem 
-                        key={equipment.id}
-                        equipment={equipment}
-                        onRemove={() => handleRemoveEquipment(equipment.id)}
+                <>
+
+                    <EquipmentForm
+                        onAddEquipment={onAddEquipment}
                     />
-                ))}
-            </div>
+
+                    <EquipmentSearch
+                        searchValue={searchValue}
+                        handleSearchChange={setSearchValue}
+                    />
+                    
+                    { /* Note: Remember the DepartmentSection component from Lab 1.2? We don't have a component similar to it here
+                    because our Equipment data is currently only one level, no nested entity like Equipment Categories > Equipment Items yet. 
+                    but we can create a separate component (EquipmentItem) for each equipment item to be rendered. */ }
+                        
+                    {filteredEquipment.length === 0 ? (
+                        <p> No equipment found.</p>
+                    ) : (
+                    <div className="equipment-inventory__grid"> 
+                        {filteredEquipment.map((equipment) => (
+                            <EquipmentItem 
+                                key={equipment.id}
+                                equipment={equipment}
+                                onRemove={() => {
+                                    void onRemoveEquipment(equipment.id);
+                                }}
+                            />
+                        ))}
+                    </div>
+                    )}
+                </>
             )}
-            
         </section>
     );
 };
