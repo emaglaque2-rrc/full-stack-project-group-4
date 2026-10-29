@@ -41,4 +41,15 @@ export const equipmentRepository = {
             (item) => item.id === id);
         return item ? { ...item } : null;
     },
+
+    async create(input: NewEquipment): Promise<Equipment> {
+        const item: Equipment = {
+            ...input,
+            id: nextId++,
+        };
+        
+        equipment = [...equipment, item];
+
+        return { ...item };
+    }
 }
