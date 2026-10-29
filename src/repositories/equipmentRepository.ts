@@ -32,6 +32,10 @@ export const equipmentRepository = {
         }));
     },
 
+    /**
+     * REads one equipment record by ID.
+     * Returns a copy when found, or null when the ID does not exist.
+     */
     async getById(id: number): Promise<Equipment | null> {
         const item = equipment.find(
             (item) => item.id === id);
