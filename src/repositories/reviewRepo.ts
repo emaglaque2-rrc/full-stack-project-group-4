@@ -1,5 +1,5 @@
 import type { Review } from "../types/review";
-import reviewData from "../data/reviews.json"
+import { reviewData } from "../data/reviews";
 
 // Followed the demo code or some variation of it for the majority of these
 

@@ -1,4 +1,6 @@
-[
+import type { Review } from "../types/review"
+
+export const reviewData: Review[]=[
     {
         "id": 1,
         "title": "Digicamera - awesome value!",
