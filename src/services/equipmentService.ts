@@ -81,6 +81,9 @@ function validateEquipment(input: NewEquipment): void {
     }
 }
 
+/**
+ * Checks that an equipment ID is a positive whole number.
+ */
 function validateEquipmentId(id: number): void {
     if (!Number.isInteger(id) || id <= 0) {
         throw new Error('Invalid equipment ID. It must be a positive integer.');
