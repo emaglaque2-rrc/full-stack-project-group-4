@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import type { NewEquipment } from '../../types/equipment';
 import { useFormInput } from '../../hooks/useFormInput';
 
 interface EquipmentFormProps {
-    // Callback supplied by the parent to receive valid equipment details.
-    onAddEquipment: (newEquipment: NewEquipment) => void;
+    // Submits equipment through the parent's asynchronous callback.
+    // Resolves after creation succeeds; rejects if creation fails.
+    onAddEquipment: (newEquipment: NewEquipment) => Promise<void>;
 }
 
 /**
