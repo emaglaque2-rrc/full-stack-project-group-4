@@ -28,19 +28,25 @@ const {
 
           <Route 
                 index 
-                element={<EquipmentInventory 
+                element={
+                <EquipmentInventory 
                   equipment={equipment} 
-                  setEquipment={setEquipment}
-                  getNextEquipmentId={getNextEquipmentId}
+                  loading={equipmentLoading}
+                  errorMessage={equipmentErrorMessage}
+                  onAddEquipment={addEquipment}
+                  onRemoveEquipment={removeEquipment}
                 />} 
           />
 
           <Route 
                 path="equipment"
-                element={<EquipmentInventory 
-                  equipment={equipment} 
-                  setEquipment={setEquipment}
-                  getNextEquipmentId={getNextEquipmentId}
+                element={
+                <EquipmentInventory 
+                  equipment={equipment}
+                  loading={equipmentLoading}
+                  errorMessage={equipmentErrorMessage}
+                  onAddEquipment={addEquipment}
+                  onRemoveEquipment={removeEquipment}
                 />} 
           />
 
