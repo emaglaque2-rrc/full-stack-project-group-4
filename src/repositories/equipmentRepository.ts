@@ -2,20 +2,8 @@ import { sampleEquipment } from '../data/sampleEquipment';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
 /**
- * Provides data access for equipment records using an in-memory collection.
- * 
- * The service layer calls these methods and handles business validation.
- * THis repository does not manage React state or display error messages.
- * 
- * Copy the initial records so repo operations do not modify the imported
- * sample objects directly.
- * 
- * Methods return Promises to follow the Monsters repo pattern and
- * prepare callers for future asynchronous backend requests.
- * This implementation does not currently make HTTP requests.
- * 
- * Returned records are shallow copies. This is sufficient for the current
- * Equipment type because its fields contain only primitive values.
+ * Copy the initial test records into the repo's working collection.
+ * So changes remain available during this app session, but reset when the app reloads. *duh*
  */
 let equipment: Equipment[] = sampleEquipment.map((item) => ({
     ...item,
@@ -28,6 +16,19 @@ let equipment: Equipment[] = sampleEquipment.map((item) => ({
 let nextId = 
     Math.max(...equipment.map((item) => item.id), 0) + 1;
 
+/**
+ * Provides data access for equipment records using an in-memory collection.
+ * 
+ * The service layer calls these methods and handles business validation.
+ * THis repository does not manage React state or display error messages.
+ * 
+ * Methods return Promises to follow the Monsters repo pattern and
+ * prepare callers for future asynchronous backend requests.
+ * This implementation does not currently make HTTP requests.
+ * 
+ * Returned records are shallow copies. This is sufficient for the current
+ * Equipment type because its fields contain only primitive values.
+ */
 export const equipmentRepository = {
     /**
      * Reads all equipment records.
