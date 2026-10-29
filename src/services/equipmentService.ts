@@ -90,7 +90,17 @@ function validateEquipmentId(id: number): void {
     }
 }
 
+/**
+ * Provides equipment operations and enforces equipment business rules.
+ * 
+ * Data access is delegated to equipmentRepository.
+ * React state and the display of feedback belong to the UI layer.
+ */
 export const equipmentService = {
+    
+    /**
+     * Retrieves all equipment through the repository.
+     */
     async getEquipment(): Promise<Equipment[]> {
         return equipmentRepository.getAll();
     }, 
