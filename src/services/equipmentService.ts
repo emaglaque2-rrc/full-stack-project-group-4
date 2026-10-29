@@ -37,14 +37,11 @@ function validateEquipment(input: NewEquipment): void {
         !name.trim() ||
         !category.trim() ||
         !description.trim() ||
-        !quantity.trim() ||
-        !availableQuantity.trim() ||
         !condition.trim() ||
         !location.trim() ||
         !picture.trim()
     ) {
-        errors.push('Please complete all equipment fields.');
-        return;
+        throw new Error("Please complete all equipment fields.");
     }    
     
     // Allow only letters and whitespace in category and condition, reject numbers and punctuation.
@@ -56,13 +53,24 @@ function validateEquipment(input: NewEquipment): void {
 
     if (!lettersAndSpacesRegex.test(category.trim())) {
         errors.push('Category must contain only letters and spaces.');
-        return;
     }
 
 
     if (!lettersAndSpacesRegex.test(condition.trim())) {
         errors.push('Condition must contain only letters and spaces.');
-        return;
+    }
+   
+    const validQuantities = 
+    Number.isInteger(quantity) &&
+    Number.isInteger(availableQuantity) &&
+    quantity >= 0 &&
+    availableQuantity >= 0;
+
+    if (!validQuantities) {
+        errors.push('Quantities must be whole numbers that are zero or greater.');
     }
 
+    if ( validQuantities && availableQuantity > quantity) {
+        errors.push('Available quantity cannot exceed total quantity.');
+    }
 }
