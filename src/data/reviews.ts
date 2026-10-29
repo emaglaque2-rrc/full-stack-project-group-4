@@ -76,21 +76,21 @@ export const reviewData: Review[]=[
     },
         {
         "id": 9,
-        "title": "Green Screen SUCKED!",
-        "author": "Robin Dabank",
+        "title": "Test",
+        "author": "TestTestTest",
         "product": "Green Screen",
-        "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
+        "body": "TestTestTestTestTestTestTestTestTest",
         "rating": 1,
-        "datePosted": "2026-12-03"
+        "datePosted": "2026-08-08"
     },
         {
         "id": 10,
-        "title": "Green Screen SUCKED!",
-        "author": "Robin Dabank",
+        "title": "Test",
+        "author": "TestTest TestTest",
         "product": "Green Screen",
-        "body": "I kept yelling at it and it wouldn't put me in godzillas mouth. BAD. BAD. BAD.",
+        "body": "Test TestTestTest TestTestTestTestTest TestTestTestTestTest",
         "rating": 1,
-        "datePosted": "2026-12-03"
+        "datePosted": "2026-04-09"
     }
 
 ]
