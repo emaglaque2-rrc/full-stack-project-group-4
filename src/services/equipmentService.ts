@@ -1,6 +1,18 @@
 import { equipmentRepository } from '../repositories/equipmentRepository';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
+function normalizeEquipment(input: NewEquipment): NewEquipment {
+    return {
+        ...input,
+        name: input.name.trim(),
+        category: input.category.trim(),
+        description: input.description.trim(),
+        condition: input.condition.trim(),
+        location: input.location.trim(),
+        picture: input.picture.trim(),
+    };
+}
+
 function validateEquipment(input: NewEquipment): void {
     const errors: string[] = [];
 
@@ -37,6 +49,5 @@ function validateEquipment(input: NewEquipment): void {
         errors.push('Condition must contain only letters and spaces.');
         return;
     }
-
 
 }
