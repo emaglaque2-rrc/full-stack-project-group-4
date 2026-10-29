@@ -13,7 +13,7 @@ service delegates to reviewRepo to keep business logic separate from render logi
 function RenderReviews({ equipment}: {equipment: Equipment[]}) {
   // ed's implementation of the custom hook takes in objects w/ form fields, so that's what i declare here
   const reviewForm = useFormInput({title: "", rating: 5, author: "", product: "", body: ""})
-  // placeholder for now while I finish other logic & documentation. I still need to replace json data with a ts file
+ 
   const [reviewList, setReviewList] = useState<Review[]>(() => reviewService.getAllReviews())
   
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
@@ -39,7 +39,6 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
     }
 
     // call setReviewList w/ getAllReviews from the service & reset form
-    // The current implementation uses a separate useState hook (which is BAD)
     setReviewList(reviewService.getAllReviews())
     reviewForm.resetForm()
     
@@ -159,7 +158,7 @@ function RenderReviews({ equipment}: {equipment: Equipment[]}) {
 * If validation returns an error, so will addReview. We assign this error to [const error]
 * and if an error IS returned, then we call the setErrorMessage function of the custom hook, 
 * setting our error message.
-* Otherwise, we call the placeholder hooks setReviewList, with the value as the return of 
+* Otherwise, we call the useState hooks setReviewList, with the value as the return of 
 * reviewService.GetAllReviews, which will return the newly updated array, and re-render the page.
 * After this, we reset the input form.
 * 
