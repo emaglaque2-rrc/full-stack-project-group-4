@@ -1,5 +1,14 @@
 import type { Equipment } from '../types/equipment';
 
+/**
+ * Initial test data for the equipment repo.
+ * 
+ * Each record follows the Equipment interface. These records allow development against
+ * a known data shape before a backend is available.
+ * 
+ * The equipment repo copies this array into its working collection,
+ * CRUD operations affect that working col. instead, not this initial test data.
+ */
 export const sampleEquipment: Equipment[] = [
     {
         "id": 1,
