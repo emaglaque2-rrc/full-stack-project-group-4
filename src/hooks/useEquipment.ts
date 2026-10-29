@@ -69,4 +69,12 @@ export function useEquipment() {
             return false;
         }
     }
+
+    return {
+        equipment,
+        loading,
+        errorMessage,
+        addEquipment,
+        removeEquipment,
+    };
 }
