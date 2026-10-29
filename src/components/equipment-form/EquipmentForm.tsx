@@ -1,30 +1,63 @@
-import { useState, type SubmitEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import type { NewEquipment } from '../../types/equipment';
+import { useFormInput } from '../../hooks/useFormInput';
 
 interface EquipmentFormProps {
     // Callback supplied by the parent to receive valid equipment details.
     onAddEquipment: (newEquipment: NewEquipment) => void;
 }
 
-// Collects and validates details for a new catalogue entry.
-// The parent handles adding that entry to the shared equipment state.
+/**
+ * Collects details for a new equipment catalogue entry.
+ * 
+ * Uses useFormInput() to manage all field values, displayed feedback/error messages,
+ * and resetting the form after a successful submission. This consolidates reusable
+ * presentation logic so other forms can use the same state-management behaviour.
+ * 
+ * Quantity fields remain strings while being edited so they can be empty. 
+ * The submit handler checks and converts them before building the NewEquipment object. 
+ * 
+ * Existing validation remains in this component *for now* during the hook integration
+ * step. Business rules will move to the appropriate service as part of the service refactor.
+ * 
+ * Valid equipment details are passed through onAddEquipment. This component and 
+ * useFormInput do not generate equipment IDs or access a repo.
+ * 
+ */
 export default function EquipmentForm({
     onAddEquipment,
     }: EquipmentFormProps) {
-        const [name, setName] = useState<string>('');
-        const [category, setCategory] = useState<string>('');
-        const [description, setDescription] = useState<string>('');
-        // Quantity and availableQuantity: keep the raw input as text so the field can also be empty.
-        // Convert it to a number after validation when submitting.
-        const [quantity, setQuantity] = useState<string>('');
-        const [availableQuantity, setAvailableQuantity] = useState<string>('');
-        const [condition, setCondition] = useState<string>('');
-        const [location, setLocation] = useState<string>('');
-        const [picture, setPicture] = useState<string>('');
+        const {
+            values,
+            setFieldValue,
+            errorMessage,
+            setErrorMessage,
+            resetForm,
+        } = useFormInput({
+            name: '',
+            category: '',
+            description: '',
+            quantity: '',
+            availableQuantity: '',
+            condition: '',
+            location: '',
+            picture: '',
+        });
 
-        // Store validation feedback to display in the form.
-        // This is a single string for simplicity, but could be an array of strings if we wanted to display multiple errors.
-        const [errorMessage, setErrorMessage] = useState<string>('');
+        // REad the current field values using the same names as before.
+        // Just destructuring it to let the existing validation and object construction 
+        // stay readable without changing the field names. The values object is still available for other uses.
+        const {
+            name,
+            category,
+            description,
+            quantity,
+            availableQuantity,
+            condition,
+            location,
+            picture
+        } = values;
+
 
         function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
             // Prevent the browser from reloading the page on submission.
@@ -99,15 +132,9 @@ export default function EquipmentForm({
             // Send the equipment details to the callback provided by the parent.
             onAddEquipment(newEquipment);
 
-            // Reset the form fields after passing the valid equipment to the parent.
-            setName('');
-            setCategory('');
-            setDescription('');
-            setQuantity('');
-            setAvailableQuantity('');
-            setCondition('');
-            setLocation('');
-            setPicture('');
+            // Reset the form fields with initial field values
+            // after passing the valid equipment to the parent and clears the displayed error message.
+            resetForm();
 
         }
 
@@ -124,7 +151,8 @@ export default function EquipmentForm({
                             id="equipment-name"
                             type="text"
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("name", event.target.value)}
                         />
                     </div>
 
@@ -134,7 +162,8 @@ export default function EquipmentForm({
                             id="equipment-category"
                             type="text"
                             value={category}
-                            onChange={(event) => setCategory(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("category", event.target.value)}
                         />
                     </div>
 
@@ -143,7 +172,8 @@ export default function EquipmentForm({
                         <textarea 
                             id="equipment-description"
                             value={description}
-                            onChange={(event) => setDescription(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("description", event.target.value)}
                         />
                     </div>
 
@@ -156,7 +186,8 @@ export default function EquipmentForm({
                             value={quantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("quantity", event.target.value)}
                         />
                     </div>
 
@@ -168,7 +199,8 @@ export default function EquipmentForm({
                             value={availableQuantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setAvailableQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("availableQuantity", event.target.value)}
                         />
                     </div>
 
@@ -178,7 +210,8 @@ export default function EquipmentForm({
                             id="equipment-condition"
                             type="text"
                             value={condition}
-                            onChange={(event) => setCondition(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("condition", event.target.value)}
                         />
                     </div>
 
@@ -188,7 +221,8 @@ export default function EquipmentForm({
                             id="equipment-location"
                             type="text"
                             value={location}
-                            onChange={(event) => setLocation(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("location", event.target.value)}
                         />
                     </div>
 
@@ -199,7 +233,8 @@ export default function EquipmentForm({
                             type="text"
                             value={picture}
                             placeholder="example.jpg"
-                            onChange={(event) => setPicture(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("picture", event.target.value)}
                         />
                     </div>
 
