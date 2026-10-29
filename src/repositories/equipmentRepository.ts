@@ -86,6 +86,11 @@ export const equipmentRepository = {
         return { ...updatedItem };
     }, 
 
+    /**
+     * Deletes an equipment recorded by ID.
+     * Returns true if a record was removed, or false if none matched.
+     * Removing a record does not reset the ID counter.
+     */
     async delete(id: number): Promise<boolean> {
         const originalLength = equipment.length;
 
