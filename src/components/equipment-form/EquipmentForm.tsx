@@ -1,114 +1,118 @@
-import { useState, type SubmitEvent } from 'react';
+import { useState } from 'react';
+import type { SubmitEvent } from 'react';
 import type { NewEquipment } from '../../types/equipment';
+import { useFormInput } from '../../hooks/useFormInput';
 
 interface EquipmentFormProps {
-    // Callback supplied by the parent to receive valid equipment details.
-    onAddEquipment: (newEquipment: NewEquipment) => void;
+    // Submits equipment through the parent's asynchronous callback.
+    // Resolves after creation succeeds; rejects if creation fails.
+    onAddEquipment: (newEquipment: NewEquipment) => Promise<void>;
 }
 
-// Collects and validates details for a new catalogue entry.
-// The parent handles adding that entry to the shared equipment state.
+/**
+ * Collects details for a new equipment catalogue entry.
+ * 
+ * Uses useFormInput() to manage all field values, displayed feedback/error messages,
+ * and resetting the form after a successful submission. This consolidates reusable
+ * presentation logic so other forms can use the same state-management behaviour.
+ * 
+ * Quantity fields remain strings while being edited so they can be empty.
+ * The submit handler converts them into numbers for NewEquipment.
+ * Blank quantities become NaN and are rejected by service validation.
+ * 
+ * Submits through the supplied onAddEquipment() callback, which connects
+ * to use useEquipment hook, equipmentService, and equipmentRepository.
+ * 
+ * The service normalizes text and validates equipment business rules.
+ * The repository stores equipment and assigns its ID.
+ * 
+ * This component manages submission progress, displays errors, and preserves
+ * entered values when submission fails.
+ */
 export default function EquipmentForm({
     onAddEquipment,
     }: EquipmentFormProps) {
-        const [name, setName] = useState<string>('');
-        const [category, setCategory] = useState<string>('');
-        const [description, setDescription] = useState<string>('');
-        // Quantity and availableQuantity: keep the raw input as text so the field can also be empty.
-        // Convert it to a number after validation when submitting.
-        const [quantity, setQuantity] = useState<string>('');
-        const [availableQuantity, setAvailableQuantity] = useState<string>('');
-        const [condition, setCondition] = useState<string>('');
-        const [location, setLocation] = useState<string>('');
-        const [picture, setPicture] = useState<string>('');
+        const {
+            values,
+            setFieldValue,
+            errorMessage,
+            setErrorMessage,
+            resetForm,
+        } = useFormInput({
+            name: '',
+            category: '',
+            description: '',
+            quantity: '',
+            availableQuantity: '',
+            condition: '',
+            location: '',
+            picture: '',
+        });
 
-        // Store validation feedback to display in the form.
-        // This is a single string for simplicity, but could be an array of strings if we wanted to display multiple errors.
-        const [errorMessage, setErrorMessage] = useState<string>('');
+        const [saving, setSaving] = useState<boolean>(false); // Tracks whether the form is currently submitting.
 
-        function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+        // REad the current field values using the same names as before.
+        // Just destructuring it to let the existing validation and object construction 
+        // stay readable without changing the field names. The values object is still available for other uses.
+        const {
+            name,
+            category,
+            description,
+            quantity,
+            availableQuantity,
+            condition,
+            location,
+            picture
+        } = values;
+
+
+        async function handleSubmit(
+            event: SubmitEvent<HTMLFormElement>,
+        ): Promise<void> {
             // Prevent the browser from reloading the page on submission.
             event.preventDefault();
 
+            if (saving) {
+                return; // Prevent double submission.
+            }
+
             setErrorMessage(''); // Clear any previous error message.
+            setSaving(true); // Indicate that the form is currently submitting.
 
-            if (
-                !name.trim() ||
-                !category.trim() ||
-                !description.trim() ||
-                !quantity.trim() ||
-                !availableQuantity.trim() ||
-                !condition.trim() ||
-                !location.trim() ||
-                !picture.trim()
-            ) {
-                setErrorMessage('Please complete all equipment fields.');
-                return;
+            try {
+                // Convert form input strings into the numeric values expected
+                // by NewEquipment. Blank quantities become NaN so they cannot
+                // accidentally become valid zero quantities.
+                //
+                // The service handles text normalization and business validation.
+                const newEquipment: NewEquipment = {
+                    name,
+                    category,
+                    description,
+                    quantity:
+                        quantity.trim() === '' ? NaN : Number(quantity),
+                    availableQuantity:
+                        availableQuantity.trim() === '' ? NaN : Number(availableQuantity),
+                    condition,
+                    location,
+                    picture,
+                };
+
+                // Wait for the hook, service, and repository operation to succeed.
+                await onAddEquipment(newEquipment);
+
+                // Only clear the form after successful creation.
+                resetForm();
+            } catch (error) {
+                setErrorMessage(
+                    error instanceof Error
+                        ? error.message
+                        : "Unable to add equipment."
+                );
+            } finally {
+                // Allow another submission after either success or failure. The form is cleared only on success.
+                setSaving(false);
             }
-
-            // Allow only letters and whitespace in category and condition, reject numbers and punctuation.
-            // The earlier empty-field check already rejects whitespace-only values.
-            // Already worked with regex in previous terms, but resource is here:
-            // https://www.w3schools.com/jsref/jsref_regexp_test.asp
-            // **IMPORTANT** I used AI to help me construct the regex, but I verified it and tested it myself.
-            const lettersAndSpacesRegex = /^[A-Za-z\s]+$/;
-
-            if (!lettersAndSpacesRegex.test(category.trim())) {
-                setErrorMessage('Category must contain only letters and spaces.');
-                return;
-            }
-
-
-            if (!lettersAndSpacesRegex.test(condition.trim())) {
-                setErrorMessage('Condition must contain only letters and spaces.');
-                return;
-            }
-
-            // Convert the input strings into numbres for the equipment object.
-            const quantityNumber = Number(quantity);
-            const availableQuantityNumber = Number(availableQuantity);
-
-            if (
-                !Number.isInteger(quantityNumber) ||
-                !Number.isInteger(availableQuantityNumber) ||
-                quantityNumber < 0 ||
-                availableQuantityNumber < 0
-            ) {
-                setErrorMessage('Quantities must be whole numbers that are zero or greater.');
-                return;
-            }
-
-            if (availableQuantityNumber > quantityNumber) {
-                setErrorMessage('Available quantity cannot exceed total quantity.');
-                return;
-            }
-
-            // Prepare the validated equipment details.
-            // The parent will generate the ID when adding the catalogue entry, so we don't include it here.
-            const newEquipment: NewEquipment = {
-                name: name.trim(),
-                category: category.trim(),
-                description: description.trim(),
-                quantity: quantityNumber,
-                availableQuantity: availableQuantityNumber,
-                condition: condition.trim(),
-                location: location.trim(),
-                picture: picture.trim(),
-            };
-
-            // Send the equipment details to the callback provided by the parent.
-            onAddEquipment(newEquipment);
-
-            // Reset the form fields after passing the valid equipment to the parent.
-            setName('');
-            setCategory('');
-            setDescription('');
-            setQuantity('');
-            setAvailableQuantity('');
-            setCondition('');
-            setLocation('');
-            setPicture('');
-
         }
 
         return (
@@ -124,7 +128,8 @@ export default function EquipmentForm({
                             id="equipment-name"
                             type="text"
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("name", event.target.value)}
                         />
                     </div>
 
@@ -134,7 +139,8 @@ export default function EquipmentForm({
                             id="equipment-category"
                             type="text"
                             value={category}
-                            onChange={(event) => setCategory(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("category", event.target.value)}
                         />
                     </div>
 
@@ -143,7 +149,8 @@ export default function EquipmentForm({
                         <textarea 
                             id="equipment-description"
                             value={description}
-                            onChange={(event) => setDescription(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("description", event.target.value)}
                         />
                     </div>
 
@@ -156,7 +163,8 @@ export default function EquipmentForm({
                             value={quantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("quantity", event.target.value)}
                         />
                     </div>
 
@@ -168,7 +176,8 @@ export default function EquipmentForm({
                             value={availableQuantity}
                             min="0"
                             step="1"
-                            onChange={(event) => setAvailableQuantity(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("availableQuantity", event.target.value)}
                         />
                     </div>
 
@@ -178,7 +187,8 @@ export default function EquipmentForm({
                             id="equipment-condition"
                             type="text"
                             value={condition}
-                            onChange={(event) => setCondition(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("condition", event.target.value)}
                         />
                     </div>
 
@@ -188,7 +198,8 @@ export default function EquipmentForm({
                             id="equipment-location"
                             type="text"
                             value={location}
-                            onChange={(event) => setLocation(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("location", event.target.value)}
                         />
                     </div>
 
@@ -199,7 +210,8 @@ export default function EquipmentForm({
                             type="text"
                             value={picture}
                             placeholder="example.jpg"
-                            onChange={(event) => setPicture(event.target.value)}
+                            onChange={(event) => 
+                                setFieldValue("picture", event.target.value)}
                         />
                     </div>
 
@@ -210,8 +222,10 @@ export default function EquipmentForm({
                         </p>
                     )}
 
-                    <button type="submit">
-                        Add Equipment
+                    <button type="submit" disabled={saving}>
+                        {saving 
+                            ? "Adding equipment... one second... *elavator music*" 
+                            : "Add Equipment"}
                     </button>
 
                 </form>

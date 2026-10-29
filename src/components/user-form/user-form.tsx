@@ -1,70 +1,76 @@
 // The form that will allow user details to be entered and also add or remove a user
-
-import { useState } from "react";
-import type { UserProps } from "../../types/userProps";
+import type React from "react";
 import type { Rental } from "../../types/user";
+import type { UserFormProps } from "../../types/userFormData";
+import { useFormInput } from "../../hooks/useFormInput";
 
+function UserForm({ users, setUsers, equipment, onAddUser }: UserFormProps) {
 
-function UserForm ({users, setUsers,equipment}: UserProps) {
+    // Reuses the shared form hook to manage input values, error messages, and resetting 
+    //the form instead of managing each field separately.
+    const { values, setFieldValue, errorMessage, setErrorMessage, resetForm } = useFormInput({
+        firstName: "",
+        lastName: "",
+        userEmail: "",
+        dateRented: "",
+        selectedEquipment: "",
+    });
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [dateRented, setDateRented] = useState("");
-    const [selectedEquipment, setSelectedEquipment] = useState("");
-    const [validationMessage, setValidationMessage] = useState("");
-
-    function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
-        setValidationMessage('');
+        setErrorMessage("");
 
-        if(firstName.trim().length < 3){
-            setValidationMessage('First name must be atleast 3 characters')
-            return
+        if (values.firstName.trim().length < 3) {
+            setErrorMessage("First name must be atleast 3 characters");
+            return;
         }
 
-        if(lastName.trim().length < 2){
-            setValidationMessage('Last name must be atleast 2 characters')
-            return
+        if (values.lastName.trim().length < 2) {
+            setErrorMessage("Last name must be atleast 2 characters");
+            return;
         }
 
-        if(!userEmail.includes('@')){
-            setValidationMessage('Enter a valid email address')
-            return
+        if (!values.userEmail.includes("@")) {
+            setErrorMessage("Enter a valid email address");
+            return;
         }
 
-        if(!dateRented) {
-            setValidationMessage('Enter the rental date')
-            return
+        if (!values.dateRented) {
+            setErrorMessage("Enter the rental date");
+            return;
         }
 
-        if(!selectedEquipment){
-            setValidationMessage('Please select an equipment')
-            return
+        if (!values.selectedEquipment) {
+            setErrorMessage("Please select an equipment");
+            return;
         }
 
         const newRental: Rental = {
-            equipmentId: Number(selectedEquipment),
-            dateRented: dateRented,
+            equipmentId: Number(values.selectedEquipment),
+            dateRented: values.dateRented,
             dateReturned: "",
-            status: "In Use"
+            status: "In Use",
         };
 
         const newUser = {
-            userId: Math.max(...users.map((user)=>Number(user.userId))) + 1,
-            firstName: firstName.trim(),
-            lastName: lastName.trim(),
-            userEmail:userEmail.trim(),
-            rentals: [newRental]
+            userId: Math.max(0, ...users.map((user) => Number(user.userId))) + 1,
+            firstName: values.firstName.trim(),
+            lastName: values.lastName.trim(),
+            userEmail: values.userEmail.trim(),
+            rentals: [newRental],
         };
 
-        setUsers([...users,newUser]);
-
-        setFirstName("");
-        setLastName("");
-        setUserEmail("");
-        setDateRented("");
-        setSelectedEquipment("");
+        try {
+            const updatedUsers = await onAddUser(newUser);
+            setUsers(updatedUsers);
+            resetForm();
+        } catch (error) {
+            setErrorMessage(
+                error instanceof Error
+                ? error.message
+                : "Unable to add user. Please try again"
+            )
+        }
     }
 
     return (
@@ -73,39 +79,59 @@ function UserForm ({users, setUsers,equipment}: UserProps) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" value={firstName} onChange={(event) =>
-                        setFirstName(event.target.value)
-                    } />
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={values.firstName}
+                        onChange={(event) => setFieldValue("firstName", event.target.value)}
+                        required
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" value={lastName} onChange={(event) =>
-                        setLastName(event.target.value)
-                    } />
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={values.lastName}
+                        onChange={(event) => setFieldValue("lastName", event.target.value)}
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="userEmail">Email:</label>
-                    <input type="email" id="userEmail" name="userEmail" value={userEmail} onChange={(event) =>
-                        setUserEmail(event.target.value)
-                    } />
+                    <input
+                        type="email"
+                        id="userEmail"
+                        name="userEmail"
+                        value={values.userEmail}
+                        onChange={(event) => setFieldValue("userEmail", event.target.value)}
+                        required
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="dateRented">Date Rented:</label>
-                    <input type="date" id="dateRented" name="dateRented" value={dateRented} onChange={(event) =>
-                        setDateRented(event.target.value)
-                    } />
+                    <input
+                        type="date"
+                        id="dateRented"
+                        name="dateRented"
+                        value={values.dateRented}
+                        onChange={(event) => setFieldValue("dateRented", event.target.value)}
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="equipment">Equipment:</label>
-                    <select id="equipment" name="equipment" value={selectedEquipment} onChange={(event) =>
-                        setSelectedEquipment(event.target.value)
-                    } >
+                    <select
+                        id="equipment"
+                        name="equipment"
+                        value={values.selectedEquipment}
+                        onChange={(event) => setFieldValue("selectedEquipment", event.target.value)}
+                    >
                         <option value="">Select Equipment</option>
-
                         {equipment?.map((item) => (
                             <option key={item.id} value={item.id}>
                                 {item.name}
@@ -113,15 +139,13 @@ function UserForm ({users, setUsers,equipment}: UserProps) {
                         ))}
                     </select>
                 </div>
-                
-                {validationMessage && (<p>{validationMessage}</p>)}
+
+                {errorMessage && <p>{errorMessage}</p>}
 
                 <button type="submit">Add User</button>
-            
             </form>
         </section>
     );
-    
 }
 
-export default UserForm
+export default UserForm;

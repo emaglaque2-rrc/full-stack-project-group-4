@@ -5,6 +5,16 @@ interface EquipmentItemProps {
     onRemove?: () => void; // Optional callback for removing the equipment item
 }
 
+/**
+ * Displays one equipment record and an optional removal button.
+ * 
+ * Calls the supplied onRemove callback when removal is requested.
+ * The parent connects this action to useEquipment, equipmentService, and
+ * equipmentRepository.
+ * 
+ * This component handles presentation and forwards the user's action.
+ * It doesn'tt validat e business rules or access stored data directly.
+ */
 function EquipmentItem({ 
     equipment, onRemove 
     }: EquipmentItemProps) {
