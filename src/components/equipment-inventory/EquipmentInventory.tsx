@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import EquipmentItem from '../equipment-item/EquipmentItem';
 import './EquipmentInventory.css';
+import * as reviewService from "../../services/reviewService"
 import type { EquipmentInventoryProps } from '../../types/equipmentInventoryProps';
 import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
 import EquipmentForm from '../equipment-form/EquipmentForm';
@@ -40,9 +41,11 @@ function EquipmentInventory({
         })
         : equipment;
 
+    const totalReviews = reviewService.getAllReviews().length
     return(
         <section className="equipment-inventory">
             <h2>Equipment Inventory</h2>
+            <p id='reviewCounter'>{totalReviews} Reviews From our Community!</p>
 
             {errorMessage && (
                 <p role="alert" className="error-message">
