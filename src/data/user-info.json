@@ -70,5 +70,166 @@
                 "status" : "In use"
             }
         ] 
+    },
+    
+    {
+        "userId" : "123459",
+        "firstName" : "Brian",
+        "lastName" : "WellHealth",
+        "userEmail" : "wb@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2026-03-12",
+                "dateReturned" : "2026-03-18",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 6,
+                "dateRented" : "2026-10-13",
+                "dateReturned" : "2026-10-30",
+                "status" : "In use"
+            }
+        ]
+    },
+
+    {
+        "userId" : "123460",
+        "firstName" : "Tylor",
+        "lastName" : "Rocks",
+        "userEmail" : "tr@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 5,
+                "dateRented" : "2026-03-13",
+                "dateReturned" : "2026-03-16",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 4,
+                "dateRented" : "2026-09-13",
+                "dateReturned" : "2026-09-20",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-10-13",
+                "dateReturned" : "2026-10-30",
+                "status" : "In use"
+            }
+        ]
+    },
+
+    {
+        "userId" : "123461",
+        "firstName" : "Zayn",
+        "lastName" : "Malik",
+        "userEmail" : "zap@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2026-06-13",
+                "dateReturned" : "2026-06-16",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 7,
+                "dateRented" : "2026-08-13",
+                "dateReturned" : "2026-08-20",
+                "status" : "Returned"
+            }
+        ]
+    },
+    
+    {
+        "userId" : "123461",
+        "firstName" : "Vishwa",
+        "lastName" : "Gami",
+        "userEmail" : "vg@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-10-13",
+                "dateReturned" : "2026-10-30",
+                "status" : "In use"
+            }
+        ]
+    },
+
+    {
+        "userId" : "123460",
+        "firstName" : "Sebastian",
+        "lastName" : "Wesonga",
+        "userEmail" : "sw@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 9,
+                "dateRented" : "2026-03-13",
+                "dateReturned" : "2026-03-16",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 1,
+                "dateRented" : "2026-09-13",
+                "dateReturned" : "2026-09-20",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-10-13",
+                "dateReturned" : "2026-10-20",
+                "status" : "Returned"
+            }
+        ]
+    },
+
+    {
+        "userId" : "123460",
+        "firstName" : "Sandra",
+        "lastName" : "Snowbell",
+        "userEmail" : "ss@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 2,
+                "dateRented" : "2026-03-13",
+                "dateReturned" : "2026-03-16",
+                "status" : "Returned"
+            }
+        ]
+    },
+
+    {
+        "userId" : "123460",
+        "firstName" : "Thanos",
+        "lastName" : "Badguy",
+        "userEmail" : "tb@gmail.com",
+        "rentals" : [
+            {
+                "equipmentId" : 5,
+                "dateRented" : "2026-03-13",
+                "dateReturned" : "2026-03-16",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 4,
+                "dateRented" : "2026-09-13",
+                "dateReturned" : "2026-09-20",
+                "status" : "Returned"
+            },
+
+            {
+                "equipmentId" : 3,
+                "dateRented" : "2026-10-13",
+                "dateReturned" : "2026-10-30",
+                "status" : "In use"
+            }
+        ]
     }
 ]
