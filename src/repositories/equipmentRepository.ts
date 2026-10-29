@@ -20,3 +20,11 @@ let equipment: Equipment[] = equipmentData.map((item) => ({
  */
 let nextId = 
     Math.max(...equipment.map((item) => item.id), 0) + 1;
+
+export const equipmentRepository = {
+    async getAll(): Promise<Equipment[]> {
+        return equipment.map((item) => ({
+            ...item,
+        }));
+    };
+}
