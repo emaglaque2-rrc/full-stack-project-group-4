@@ -14,5 +14,9 @@ let equipment: Equipment[] = equipmentData.map((item) => ({
     ...item,
 }));
 
+/**
+ * Begin above the highest initial ID.
+ * The zero fallback also supports an empty initial collection.
+ */
 let nextId = 
     Math.max(...equipment.map((item) => item.id), 0) + 1;
