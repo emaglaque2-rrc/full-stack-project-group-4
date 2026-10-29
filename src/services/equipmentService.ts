@@ -70,7 +70,13 @@ function validateEquipment(input: NewEquipment): void {
         errors.push('Quantities must be whole numbers that are zero or greater.');
     }
 
-    if ( validQuantities && availableQuantity > quantity) {
+    if ( validQuantities &&
+         availableQuantity > quantity
+        ) {
         errors.push('Available quantity cannot exceed total quantity.');
+    }
+
+    if (errors.length > 0) {
+        throw new Error(errors.join(' '));
     }
 }
