@@ -76,6 +76,25 @@ export default function EquipmentForm({
             setErrorMessage(''); // Clear any previous error message.
             setSaving(true); // Indicate that the form is currently submitting.
 
+            try {
+                const newEquipment: NewEquipment = {
+                    name,
+                    category,
+                    description,
+                    quantity:
+                        quantity.trim() === '' ? NaN : Number(quantity),
+                    availableQuantity:
+                        availableQuantity.trim() === '' ? NaN : Number(availableQuantity),
+                    condition,
+                    location,
+                    picture,
+                };
+            } catch (error) {
+
+            } finally {
+                
+            }
+
         }
 
         return (
