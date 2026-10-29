@@ -12,7 +12,13 @@ import type { User } from './types/user';
 function App() {
 const [users, setUsers] = useState<User[]>(userData)
 
-
+/**
+ * Uses one equipment hook instance to share equipment across pages.
+ * Loading, addition, and removal go through useEquipment,
+ * equipmentService, and equipmentRepository.
+ * The repository handles data storage and ID generation. 
+ * The service handles business validation and error messages.
+ */
 const {
   equipment,
   loading: equipmentLoading,
