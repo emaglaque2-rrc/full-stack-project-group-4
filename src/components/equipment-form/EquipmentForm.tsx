@@ -110,7 +110,6 @@ export default function EquipmentForm({
                 // Allow another submission after either success or failure. The form is cleared only on success.
                 setSaving(false);
             }
-
         }
 
         return (
@@ -220,8 +219,10 @@ export default function EquipmentForm({
                         </p>
                     )}
 
-                    <button type="submit">
-                        Add Equipment
+                    <button type="submit" disabled={saving}>
+                        {saving 
+                            ? "Adding equipment... one second... *elavator music*" 
+                            : "Add Equipment"}
                     </button>
 
                 </form>
