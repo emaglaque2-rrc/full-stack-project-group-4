@@ -2,6 +2,28 @@ import { useEffect, useState } from 'react';
 import { equipmentService } from '../services/equipmentService';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
+/**
+ * Manages the equipment collection displayed by React.
+ * 
+ * Loads equipment when the hook mounts and updates its local list
+ * after successful service operations.
+ * 
+ * Business validation belongs to equipmentService.
+ * Data access belongs to equipmentRepository.
+ * 
+ * Each invocation owns separate React state. App should invoke this hook once 
+ * and share its results with t he pages that need equipment, but this will be done
+ * in a future sprint :) *IMPORTANT*
+ * 
+ * @returns
+ * - equipment: Equipment records currently displayed.
+ * - loading: Whether the initial equipment request is pending.
+ * - errorMessage: Feedback for loading or deletion failures.
+ * - addEquipment: Creates equipment and updates the displayed list. Rejects
+ * on failure so the form can display its submission error(ss).
+ * - removeEquipment: Deletes equipment and updates the displayed list. 
+ * Returns whether deletion succeeded.
+ */
 export function useEquipment() {
     const [equipment, setEquipment] = useState<Equipment[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
