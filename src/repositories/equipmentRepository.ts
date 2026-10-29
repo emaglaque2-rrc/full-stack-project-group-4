@@ -2,13 +2,20 @@ import equipmentData from '../data/equipment.json';
 import type { Equipment, NewEquipment } from '../types/equipment';
 
 /**
- * Working equipment collection for the mock repo.
+ * Provides data access for equipment records using an in-memory collection.
+ * 
+ * The service layer calls these methods and handles business validation.
+ * THis repository does not manage React state or display error messages.
  * 
  * Copy the initial records so repo operations do not modify the imported
  * sample objects directly.
  * 
- * This collection is shared by callers of this module during the current application session.
- * It resets when the application reloads.
+ * Methods return Promises to follow the Monsters repo pattern and
+ * prepare callers for future asynchronous backend requests.
+ * This implementation does not currently make HTTP requests.
+ * 
+ * Returned records are shallow copies. This is sufficient for the current
+ * Equipment type because its fields contain only primitive values.
  */
 let equipment: Equipment[] = equipmentData.map((item) => ({
     ...item,
@@ -81,7 +88,9 @@ export const equipmentRepository = {
             id: equipment[index].id,
         };
 
-        equipment = equipment.map((item) => item.id === id ? updatedItem : item);
+        equipment = equipment.map((item) => 
+            item.id === id ? updatedItem : item
+        );
 
         return { ...updatedItem };
     }, 
@@ -97,5 +106,5 @@ export const equipmentRepository = {
         equipment = equipment.filter((item) => item.id !== id);
 
         return equipment.length < originalLength;
-    }
-}
+    },
+};
