@@ -11,9 +11,8 @@ import type { Equipment, NewEquipment } from '../types/equipment';
  * Business validation belongs to equipmentService.
  * Data access belongs to equipmentRepository.
  * 
- * Each invocation owns separate React state. App should invoke this hook once 
- * and share its results with t he pages that need equipment, but this will be done
- * in a future sprint :) *IMPORTANT*
+ * Each invocation owns separate React state. This will be invoked in App 
+ * and passed down to child components that need the same equipment data and operations.
  * 
  * @returns
  * - equipment: Equipment records currently displayed.

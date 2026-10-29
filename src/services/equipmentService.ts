@@ -22,11 +22,12 @@ function normalizeEquipment(input: NewEquipment): NewEquipment {
 /**
  * Checks equipment business rules.
  * 
- * Quantities must already be numbers. The form converts its text inputs before
- * passinng them to this function/service.
+ * Immediately rejects missing required text fields.
+ * Otherwise, collects applicable validation errors and throws one combined message.
  * 
- * Collects applicable errors and throws one combined message. This function
- * does not manage React state or display errors.
+ * Quantities must already be numbers. The form converts its text inputs before
+ * passinng them to this function/service. This function does not manage React
+ * state or display errors.
  */
 function validateEquipment(input: NewEquipment): void {
     const errors: string[] = [];
@@ -128,7 +129,9 @@ export const equipmentService = {
 
     /**
      * Replaces all editable fields of an existing record.
-     * Rejects invalid input or an ID that does not exist. ****THIS WILL BE IMPLEMENTED NEXT SPRINT****
+     * Rejects invalid input or an ID that does not exist. 
+     * 
+     * Available for future equipment-editing UI integration !!
      */
     async updateEquipment(
         id: number,
