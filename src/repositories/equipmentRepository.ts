@@ -55,5 +55,13 @@ export const equipmentRepository = {
         equipment = [...equipment, item];
 
         return { ...item };
+    },
+
+    async update(
+        id: number,
+        input: NewEquipment,
+    ): Promise<Equipment | null> {
+        const index = equipment.findIndex((item) => item.id === id);
+        
     }
 }
