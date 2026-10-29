@@ -16,15 +16,18 @@ interface EquipmentFormProps {
  * and resetting the form after a successful submission. This consolidates reusable
  * presentation logic so other forms can use the same state-management behaviour.
  * 
- * Quantity fields remain strings while being edited so they can be empty. 
- * The submit handler checks and converts them before building the NewEquipment object. 
+ * Quantity fields remain strings while being edited so they can be empty.
+ * The submit handler converts them into numbers for NewEquipment.
+ * Blank quantities become NaN and are rejected by service validation.
  * 
- * Existing validation remains in this component *for now* during the hook integration
- * step. Business rules will move to the appropriate service as part of the service refactor.
+ * Submits through the supplied onAddEquipment() callback, which connects
+ * to use useEquipment hook, equipmentService, and equipmentRepository.
  * 
- * Valid equipment details are passed through onAddEquipment. This component and 
- * useFormInput do not generate equipment IDs or access a repo.
+ * The service normalizes text and validates equipment business rules.
+ * The repository stores equipment and assigns its ID.
  * 
+ * This component manages submission progress, displays errors, and preserves
+ * entered values when submission fails.
  */
 export default function EquipmentForm({
     onAddEquipment,
