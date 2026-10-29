@@ -5,6 +5,24 @@ import type { EquipmentInventoryProps } from '../../types/equipmentInventoryProp
 import { EquipmentSearch } from '../equipment-search/EquipmentSearch';
 import EquipmentForm from '../equipment-form/EquipmentForm';
 
+/**
+ * Displays the equipment catalogue, search field, and creation/removal controls.
+ * 
+ * Receives the equipment collection, loading status, error message, and operatio callbacks from the useEquipment instance owned by App.
+ * Using that shared instance keeps the equipment list consistent across pages.
+ * 
+ * Passes the creation callback to EquipmentForm and connects each EquipmentItem's removal callback to the
+ * corresponding equipmentID. These operations go through useEquipment, equipmentService, and equipmentRepository.
+ * 
+ * Keeps search state and filtering here bceause they determine which records are displayed
+ * without changing the stored equipment.
+ * 
+ * Displays loading feedback and loading/deletion errors from the hook. 
+ * EquipmentForm separelty displays its own submission errors.
+ * 
+ * This component does not validate equipent business rules, generate IDs, or 
+ * access the repo directly.
+ */
 function EquipmentInventory({ 
     equipment,
     loading,
