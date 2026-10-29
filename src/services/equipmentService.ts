@@ -18,5 +18,25 @@ function validateEquipment(input: NewEquipment): void {
     ) {
         errors.push('Please complete all equipment fields.');
         return;
+    }    
+    
+    // Allow only letters and whitespace in category and condition, reject numbers and punctuation.
+    // The earlier empty-field check already rejects whitespace-only values.
+    // Already worked with regex in previous terms, but resource is here:
+    // https://www.w3schools.com/jsref/jsref_regexp_test.asp
+    // **IMPORTANT** I used AI to help me construct the regex, but I verified it and tested it myself.
+    const lettersAndSpacesRegex = /^[A-Za-z\s]+$/;
+
+    if (!lettersAndSpacesRegex.test(category.trim())) {
+        errors.push('Category must contain only letters and spaces.');
+        return;
     }
+
+
+    if (!lettersAndSpacesRegex.test(condition.trim())) {
+        errors.push('Condition must contain only letters and spaces.');
+        return;
+    }
+
+
 }
