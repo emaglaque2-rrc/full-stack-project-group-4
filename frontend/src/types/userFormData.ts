@@ -1,5 +1,5 @@
-import type { User } from '../types/user'
-import type { Equipment } from '../types/equipment'
+import type { User } from './user'
+import type { Equipment } from './equipment'
 
 // Interface for the props that UserPage passes to the UserFOrm component
 export interface UserFormProps{
