@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
@@ -19,6 +19,12 @@
     "pg": "^8.23.1",
     "zod": "^4.6.7"
   },
+  "compilerOptions": {
+    "module": "NodeNext", 
+    "moduleResolution": "NodeNext"
+  },
+    
+  
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
