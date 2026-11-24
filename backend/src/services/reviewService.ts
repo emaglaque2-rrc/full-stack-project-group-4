@@ -1,5 +1,5 @@
 import {reviewRepository} from "../repositories/reviewRepository.js";
-import type {Review} from "../../shared/types/review.js"
+import type {Review} from "../../../../shared/types/review.js"
 export const reviewService = {
 
     getAllReviews()  {

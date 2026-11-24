@@ -1,5 +1,5 @@
 import type {Request, Response} from 'express';
-import {reviewService} from '../services/reviewService.js';
+import {reviewService} from '../src/repositories/services/reviewService.js';
 
 export const reviewController = {
 
