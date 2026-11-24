@@ -7,6 +7,6 @@ reviewRoutes.get("/", reviewController.getAllReviews);
 
 reviewRoutes.get("/:id", reviewController.getReviewById);
 
-reviewRoutes.post("/", validateReviewBody, reviewController.createReview);
+reviewRoutes.post("/", validateReviewBody, reviewController.addReview);
 
 reviewRoutes.delete("/:id", reviewController.deleteReview);

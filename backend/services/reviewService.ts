@@ -1,21 +1,21 @@
-
-
+import {reviewRepository} from "../repositories/reviewRepository.js";
+import type {Review} from "../../shared/types/review.js"
 export const reviewService = {
 
     getAllReviews()  {
-        return monsterRepository.getAllReviews();
+        return reviewRepository.getAllReviews();
   },
 
-    getReviewById: (id: number)  {
-        return monsterRepository.getReviewById(id);
+    getReviewById(id: number)  {
+        return reviewRepository.getById(id);
   },
 
     async addReview(input: Review)  {
-        return monsterRepository.addReview(input);
+        return reviewRepository.addReview(input);
   },
 
     removeReview(id: number)  {
-        return monsterRepository.removeReview(id);
+        return reviewRepository.removeReview(id);
   }
 
 }
